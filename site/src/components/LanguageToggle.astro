@@ -1,0 +1,66 @@
+---
+import { getAlternatePath, useTranslation } from '../i18n/ui';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  pathname: string;
+}
+
+const { locale, pathname } = Astro.props;
+const t = useTranslation(locale);
+
+const enPath = locale === 'pt' ? getAlternatePath(pathname, 'en') : pathname;
+const ptPath = locale === 'en' ? getAlternatePath(pathname, 'pt') : pathname;
+---
+
+<nav class="lang-toggle" aria-label={locale === 'pt' ? 'Trocar idioma' : 'Switch language'}>
+  <a
+    href={enPath}
+    class:list={['lang-link', { active: locale === 'en' }]}
+    aria-current={locale === 'en' ? 'true' : undefined}
+  >
+    {t('lang.en')}
+  </a>
+  <span class="lang-sep" aria-hidden="true">·</span>
+  <a
+    href={ptPath}
+    class:list={['lang-link', { active: locale === 'pt' }]}
+    aria-current={locale === 'pt' ? 'true' : undefined}
+  >
+    {t('lang.pt')}
+  </a>
+</nav>
+
+<style>
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .lang-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: var(--fg-muted);
+    transition: color 0.15s;
+  }
+
+  .lang-link.active {
+    color: var(--fg-primary);
+    border-bottom: 1px solid var(--fg-primary);
+    padding-bottom: 1px;
+  }
+
+  .lang-link:hover:not(.active) {
+    color: var(--fg-primary);
+  }
+
+  .lang-sep {
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+</style>

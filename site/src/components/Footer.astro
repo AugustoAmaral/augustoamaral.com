@@ -1,0 +1,148 @@
+---
+import { useTranslation } from '../i18n/ui';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslation(locale);
+
+const privacyHref = locale === 'pt' ? '/pt/privacy' : '/privacy';
+---
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <!-- Col 1: Colophon -->
+    <div class="footer-col">
+      <p class="col-label mono-label">COLOPHON</p>
+      <p class="col-body">{t('footer.colophon')}</p>
+    </div>
+
+    <!-- Col 2: Elsewhere -->
+    <div class="footer-col">
+      <p class="col-label mono-label">{t('footer.elsewhere')}</p>
+      <ul class="link-list">
+        <li><a href="https://github.com/AugustoAmaral" class="ext-link" target="_blank" rel="noopener">github.com/AugustoAmaral ↗</a></li>
+        <li><a href="https://www.youtube.com/@odevguto" class="ext-link" target="_blank" rel="noopener">youtube / @odevguto ↗</a></li>
+        <li><a href="https://www.linkedin.com/in/auamaral" class="ext-link" target="_blank" rel="noopener">linkedin / auamaral ↗</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 3: Related -->
+    <div class="footer-col">
+      <p class="col-label mono-label">{t('footer.related')}</p>
+      <ul class="link-list">
+        <li><a href="https://resume.augustoamaral.com" class="ext-link" target="_blank" rel="noopener">resume.augustoamaral.com ↗</a></li>
+        <li><a href={privacyHref} class="ext-link">privacy</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 4: Copyright + locale marker -->
+    <div class="footer-col footer-meta">
+      <p class="copyright">{t('footer.copyright')}</p>
+      <p class="locale-marker">
+        <span class:list={['locale-opt', { 'locale-active': locale === 'en' }]}>EN</span>
+        <span class="locale-sep">·</span>
+        <span class:list={['locale-opt', { 'locale-active': locale === 'pt' }]}>PT</span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 32px 24px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 24px;
+    max-width: var(--max-w);
+    margin-inline: auto;
+  }
+
+  .col-label {
+    margin: 0 0 12px 0;
+  }
+
+  .col-body {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ext-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .ext-link:hover {
+    color: var(--fg-primary);
+  }
+
+  .footer-meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .copyright {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--fg-muted);
+    margin: 0;
+    letter-spacing: 0.05em;
+  }
+
+  .locale-marker {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    margin: 0;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .locale-opt {
+    color: var(--fg-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .locale-opt.locale-active {
+    color: var(--fg-primary);
+  }
+
+  .locale-sep {
+    color: var(--fg-muted);
+  }
+
+  @media (max-width: 720px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-meta {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+</style>

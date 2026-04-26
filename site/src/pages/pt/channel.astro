@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslation } from '../../i18n/ui';
+
+const locale = 'pt' as const;
+const pathname = '/pt/channel';
+const t = useTranslation(locale);
+
+const episodes = [
+  { title: 'Por que eu não uso useEffect pra fetch', duration: '14:32', age: '2 sem' },
+  { title: 'TypeScript: o que é variance e por que importa', duration: '22:14', age: '1 mês' },
+  { title: 'Como ler código que você acabou de herdar', duration: '18:47', age: '6 sem' },
+];
+---
+
+<BaseLayout
+  title="Canal — O Dev Guto — Augusto Amaral"
+  description="O Dev Guto — engenharia de software em português. Sem thumbnails gritantes."
+  locale={locale}
+  pathname={pathname}
+  activeNav="channel"
+>
+
+  <section class="channel-top section-border">
+    <div class="container">
+      <p class="page-label mono-label">{t('channel.label')}</p>
+      <h1 class="page-h1">{t('channel.h1')}</h1>
+      <p class="page-intro">
+        Engenharia de software em português. <em>Sem</em> thumbnails gritantes, <em>sem</em> '10 coisas que você não sabia sobre React', <em>com</em> as partes que tive que descobrir do jeito difícil.
+      </p>
+    </div>
+  </section>
+
+  <section class="channel-why section-border">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <h2 class="sub-h2">{t('channel.whyTitle')}</h2>
+          <p class="sub-body">
+            Porque passei horas demais assistindo conteúdo só em inglês quando estava aprendendo, e toda vez que alguém mudava para meu idioma o material ficava mais raso. Não precisa ser assim. Boas explicações não precisam de um segundo idioma.
+          </p>
+        </div>
+        <div>
+          <h2 class="sub-h2">{t('channel.whatTitle')}</h2>
+          <p class="sub-body">
+            Mergulhos profundos em problemas reais de engenharia: gerenciamento de estado, internos do TypeScript, debugging em produção, sistemas de design. Não tutoriais. Não "top 10 hooks". O trabalho de verdade, mostrado com honestidade.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="channel-episodes">
+    <div class="container">
+      <h2 class="episodes-title">{t('channel.recentTitle')}</h2>
+      <div class="episodes-grid">
+        {episodes.map((ep) => (
+          <a href="#" class="episode-card">
+            <div class="ep-thumb">
+              <span class="ep-thumb-label mono-label">THUMBNAIL 16:9</span>
+            </div>
+            <p class="ep-title">{ep.title}</p>
+            <p class="ep-meta mono-label">{ep.duration} · {ep.age}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .channel-top {
+    padding: 80px 0;
+  }
+
+  .page-label {
+    margin: 0 0 24px 0;
+    letter-spacing: 0.12em;
+  }
+
+  .page-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    margin: 0 0 var(--space-5) 0;
+    letter-spacing: -0.02em;
+  }
+
+  .page-intro {
+    font-size: 1rem;
+    color: var(--fg-muted);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 680px;
+  }
+
+  .page-intro em {
+    font-style: italic;
+    color: var(--fg-primary);
+  }
+
+  .channel-why {
+    padding: 80px 0;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+
+  .sub-h2 {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .sub-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  .channel-episodes {
+    padding: 80px 0;
+  }
+
+  .episodes-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0 0 48px 0;
+  }
+
+  .episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .episode-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .ep-thumb {
+    height: 180px;
+    background: repeating-linear-gradient(
+      135deg,
+      var(--bg-elevated) 0 8px,
+      var(--bg-base) 8px 16px
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    transition: opacity 0.15s;
+  }
+
+  .episode-card:hover .ep-thumb {
+    opacity: 0.8;
+  }
+
+  .ep-thumb-label {
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  .ep-title {
+    font-size: 0.9375rem;
+    color: var(--fg-primary);
+    margin: 0 0 6px 0;
+    line-height: 1.4;
+  }
+
+  .ep-meta {
+    margin: 0;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 720px) {
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .episodes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

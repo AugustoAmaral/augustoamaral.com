@@ -1,0 +1,206 @@
+---
+interface Props {
+  density?: number;
+}
+
+const { density = 32 } = Astro.props;
+---
+
+<div class="graph-host" aria-hidden="true" role="presentation">
+  <canvas class="graph-canvas" role="presentation" aria-hidden="true"></canvas>
+</div>
+
+<script is:inline define:vars={{ density }}>
+  (function () {
+    const host = document.currentScript
+      ? document.currentScript.closest('.graph-host') ?? document.querySelector('.graph-host')
+      : document.querySelector('.graph-host');
+
+    if (!host) return;
+
+    const canvas = host.querySelector('canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const NODE_COUNT = Math.max(30, Math.min(40, density));
+    const MAX_DIST = 200;
+    const FPS = 30;
+    const FRAME_INTERVAL = 1000 / FPS;
+
+    let nodes = [];
+    let mouseX = -1000;
+    let mouseY = -1000;
+    let rafId = null;
+    let lastTime = 0;
+    let paused = false;
+    let initialized = false;
+    let fgMuted = '#8B95A8';
+
+    function readColor() {
+      try {
+        const style = getComputedStyle(document.documentElement);
+        const val = style.getPropertyValue('--fg-muted').trim();
+        if (val) fgMuted = val;
+      } catch (_) {}
+    }
+
+    function resize() {
+      canvas.width = host.offsetWidth;
+      canvas.height = host.offsetHeight;
+    }
+
+    function initNodes() {
+      nodes = [];
+      for (let i = 0; i < NODE_COUNT; i++) {
+        nodes.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+        });
+      }
+    }
+
+    function drawFrame() {
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // Move nodes
+      for (const n of nodes) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0) { n.x = 0; n.vx *= -1; }
+        if (n.x > w) { n.x = w; n.vx *= -1; }
+        if (n.y < 0) { n.y = 0; n.vy *= -1; }
+        if (n.y > h) { n.y = h; n.vy *= -1; }
+      }
+
+      // Build list with optional mouse node
+      const all = [...nodes];
+      const hasMouseInHost = mouseX >= 0 && mouseX <= w && mouseY >= 0 && mouseY <= h;
+      if (hasMouseInHost) {
+        all.push({ x: mouseX, y: mouseY, vx: 0, vy: 0 });
+      }
+
+      // Draw edges
+      ctx.globalAlpha = 0.32;
+      ctx.strokeStyle = fgMuted;
+
+      for (let i = 0; i < all.length; i++) {
+        for (let j = i + 1; j < all.length; j++) {
+          const dx = all[i].x - all[j].x;
+          const dy = all[i].y - all[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MAX_DIST) {
+            const strength = 1 - dist / MAX_DIST;
+            ctx.lineWidth = strength * 1.5;
+            ctx.beginPath();
+            ctx.moveTo(all[i].x, all[i].y);
+            ctx.lineTo(all[j].x, all[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw nodes
+      ctx.globalAlpha = 0.32;
+      ctx.fillStyle = fgMuted;
+      for (const n of nodes) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.globalAlpha = 1;
+    }
+
+    function loop(ts) {
+      if (paused) return;
+      rafId = requestAnimationFrame(loop);
+      if (ts - lastTime < FRAME_INTERVAL) return;
+      lastTime = ts;
+      drawFrame();
+    }
+
+    function start() {
+      if (prefersReducedMotion) {
+        drawFrame();
+        return;
+      }
+      if (rafId) return;
+      rafId = requestAnimationFrame(loop);
+    }
+
+    function stop() {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    }
+
+    function init() {
+      if (initialized) return;
+      initialized = true;
+      readColor();
+      resize();
+      initNodes();
+      start();
+    }
+
+    // Mouse tracking (relative to host)
+    host.addEventListener('mousemove', (e) => {
+      const rect = host.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
+
+    host.addEventListener('mouseleave', () => {
+      mouseX = -1000;
+      mouseY = -1000;
+    });
+
+    // Resize observer
+    const ro = new ResizeObserver(() => {
+      resize();
+      if (prefersReducedMotion) drawFrame();
+    });
+    ro.observe(host);
+
+    // Page visibility
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        paused = true;
+        stop();
+      } else {
+        paused = false;
+        start();
+      }
+    });
+
+    // Init with requestIdleCallback or fallback
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(init, { timeout: 1000 });
+    } else {
+      setTimeout(init, 0);
+    }
+  })();
+</script>
+
+<style>
+  .graph-host {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: auto;
+  }
+
+  .graph-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+</style>

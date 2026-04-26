@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useTranslation } from '../i18n/ui';
+
+const locale = 'en' as const;
+const pathname = '/principles';
+const t = useTranslation(locale);
+---
+
+<BaseLayout
+  title="Principles — Augusto Amaral"
+  description="Working on it. Come back later."
+  locale={locale}
+  pathname={pathname}
+  activeNav="principles"
+>
+
+  <section class="principles-section">
+    <div class="container centered">
+      <p class="page-label mono-label">{t('principles.label')}</p>
+      <h1 class="principles-h1">
+        <em>Working on it.</em> Come back later.
+      </h1>
+      <p class="principles-body">{t('principles.body')}</p>
+      <a href="/" class="back-link">{t('principles.back')}</a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .principles-section {
+    padding: 120px 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  .page-label {
+    margin: 0 0 32px 0;
+    letter-spacing: 0.12em;
+    display: block;
+  }
+
+  .principles-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    margin: 0 0 var(--space-6) 0;
+    letter-spacing: -0.02em;
+  }
+
+  .principles-h1 em {
+    font-style: italic;
+    color: var(--fg-muted);
+  }
+
+  .principles-body {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--fg-muted);
+    max-width: 600px;
+    margin: 0 auto var(--space-7) auto;
+  }
+
+  .back-link {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--fg-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .back-link:hover {
+    color: var(--fg-primary);
+    border-color: var(--fg-primary);
+  }
+</style>

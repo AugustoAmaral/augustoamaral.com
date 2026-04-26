@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslation } from '../../i18n/ui';
+
+const locale = 'pt' as const;
+const pathname = '/pt/privacy';
+const t = useTranslation(locale);
+---
+
+<BaseLayout
+  title="Privacidade — Augusto Amaral"
+  description="Política de privacidade para augustoamaral.com e Liz. Linguagem direta."
+  locale={locale}
+  pathname={pathname}
+>
+
+  <section class="privacy-top section-border">
+    <div class="container">
+      <p class="page-label mono-label">{t('privacy.label')}</p>
+      <h1 class="privacy-h1">{t('privacy.h1')}</h1>
+      <p class="privacy-intro">{t('privacy.intro')}</p>
+    </div>
+  </section>
+
+  <section class="privacy-body">
+    <div class="container">
+
+      <div id="this-site" class="policy-row section-border">
+        <div class="policy-key mono-label">{t('privacy.s01.title')}</div>
+        <div class="policy-val">{t('privacy.s01.body')}</div>
+      </div>
+
+      <div id="liz" class="policy-row section-border">
+        <div class="policy-key mono-label">{t('privacy.s02.title')}</div>
+        <div class="policy-val">{t('privacy.s02.body')}</div>
+      </div>
+
+      <div id="data-requests" class="policy-row section-border">
+        <div class="policy-key mono-label">{t('privacy.s03.title')}</div>
+        <div class="policy-val">
+          {t('privacy.s03.body')} <a href="mailto:contato@augustoamaral.com" class="inline-link">contato@augustoamaral.com</a>
+        </div>
+      </div>
+
+      <div id="changes" class="policy-row">
+        <div class="policy-key mono-label">{t('privacy.s04.title')}</div>
+        <div class="policy-val">{t('privacy.s04.body')}</div>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .privacy-top {
+    padding: 80px 0;
+  }
+
+  .page-label {
+    margin: 0 0 24px 0;
+    letter-spacing: 0.12em;
+  }
+
+  .privacy-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    margin: 0 0 var(--space-4) 0;
+    letter-spacing: -0.02em;
+  }
+
+  .privacy-intro {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  .privacy-body {
+    padding: 48px 0 80px;
+  }
+
+  .policy-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    padding: 48px 0;
+  }
+
+  .policy-key {
+    letter-spacing: 0.08em;
+    padding-top: 4px;
+  }
+
+  .policy-val {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--fg-muted);
+  }
+
+  .inline-link {
+    color: var(--fg-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: border-color 0.15s;
+  }
+
+  .inline-link:hover {
+    border-color: var(--fg-primary);
+  }
+
+  @media (max-width: 720px) {
+    .policy-row {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+</style>

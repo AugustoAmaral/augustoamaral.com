@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslation } from '../../i18n/ui';
+
+const locale = 'pt' as const;
+const pathname = '/pt/liz';
+const t = useTranslation(locale);
+---
+
+<BaseLayout
+  title="Liz — Augusto Amaral"
+  description="Uma ferramenta pequena que faz uma coisa chata muito bem. Feita pra mim. Possivelmente útil pra você."
+  locale={locale}
+  pathname={pathname}
+  activeNav="liz"
+>
+
+  <section class="liz-top section-border">
+    <div class="container">
+      <div class="liz-label-row">
+        <p class="page-label mono-label">{t('liz.label')}</p>
+        <span class="beta-tag">BETA</span>
+      </div>
+      <h1 class="liz-h1">{t('liz.h1')}</h1>
+      <p class="liz-tagline">
+        Uma ferramenta pequena que faz <em>uma coisa chata muito bem</em>. Feita pra mim. Possivelmente útil pra você.
+      </p>
+    </div>
+  </section>
+
+  <section class="liz-what section-border">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <h2 class="sub-h2">{t('liz.whatTitle')}</h2>
+          <p class="sub-body">
+            Liz é uma ferramenta de digest pessoal. Ela observa as coisas que você se importa — pull requests, issues, threads do inbox — e traz à superfície só o que realmente precisa da sua atenção. Sem ruído, sem dashboards, só um resumo diário.
+          </p>
+        </div>
+        <div>
+          <h2 class="sub-h2">{t('liz.howTitle')}</h2>
+          <p class="sub-body">
+            Você conecta suas fontes uma vez. Liz as consulta em um agendamento, aplica um conjunto de regras que você define, e te manda um digest por e-mail no horário que você escolher. As regras são simples o suficiente para escrever em linguagem natural.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="liz-data section-border">
+    <div class="container">
+      <h2 class="data-title">{t('liz.dataTitle')}</h2>
+      <div class="data-table">
+        <div class="data-header">
+          <span class="mono-label">DADO</span>
+          <span class="mono-label">POR QUÊ</span>
+          <span class="mono-label">COMPARTILHADO?</span>
+        </div>
+        <div class="data-row">
+          <span class="row-data">E-mail</span>
+          <span class="row-why">Auth + entrega do digest</span>
+          <span class="row-shared no">Não</span>
+        </div>
+        <div class="data-row">
+          <span class="row-data">Metadados de sessão</span>
+          <span class="row-why">O produto funcionar</span>
+          <span class="row-shared no">Não</span>
+        </div>
+        <div class="data-row">
+          <span class="row-data">Logs de erro</span>
+          <span class="row-why">Corrigir bugs</span>
+          <span class="row-shared">Sentry, scrubbed</span>
+        </div>
+      </div>
+      <p class="data-note">
+        <a href="/pt/privacy#liz" class="inline-link">{t('liz.privacyLink')}</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="liz-cta">
+    <div class="container cta-container">
+      <a href="#" class="cta-btn">{t('liz.ctaLink')}</a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .liz-top {
+    padding: 80px 0;
+  }
+
+  .liz-label-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .page-label {
+    margin: 0;
+    letter-spacing: 0.12em;
+  }
+
+  .beta-tag {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-warm);
+    border: 1px solid var(--accent-warm);
+    padding: 2px 8px;
+  }
+
+  .liz-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(4rem, 8vw, 7rem);
+    font-weight: 400;
+    line-height: 0.95;
+    margin: 0 0 var(--space-5) 0;
+    letter-spacing: -0.02em;
+  }
+
+  .liz-tagline {
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 640px;
+    color: var(--fg-muted);
+  }
+
+  .liz-tagline em {
+    font-style: italic;
+    color: var(--fg-primary);
+  }
+
+  .liz-what {
+    padding: 80px 0;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+
+  .sub-h2 {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .sub-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  .liz-data {
+    padding: 80px 0;
+  }
+
+  .data-title {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 0 0 32px 0;
+  }
+
+  .data-table {
+    border-top: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+
+  .data-header,
+  .data-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-header {
+    border-bottom: 1px solid var(--fg-muted);
+  }
+
+  .row-data {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--fg-primary);
+  }
+
+  .row-why {
+    font-size: 0.9375rem;
+    color: var(--fg-muted);
+  }
+
+  .row-shared {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--fg-muted);
+  }
+
+  .row-shared.no {
+    color: var(--fg-primary);
+  }
+
+  .data-note {
+    margin: 16px 0 0 0;
+  }
+
+  .inline-link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--fg-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .inline-link:hover {
+    color: var(--fg-primary);
+    border-color: var(--fg-primary);
+  }
+
+  .liz-cta {
+    padding: 80px 0;
+  }
+
+  .cta-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-btn {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    color: var(--accent-warm);
+    border: 1px solid var(--accent-warm);
+    padding: 14px 32px;
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+
+  .cta-btn:hover {
+    background-color: rgba(212, 113, 94, 0.1);
+  }
+
+  @media (max-width: 720px) {
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+</style>

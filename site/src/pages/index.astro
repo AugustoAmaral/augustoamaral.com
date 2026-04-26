@@ -1,0 +1,520 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GraphCanvas from '../components/GraphCanvas.astro';
+import { useTranslation } from '../i18n/ui';
+
+const locale = 'en' as const;
+const pathname = '/';
+const t = useTranslation(locale);
+---
+
+<BaseLayout
+  title="Augusto Amaral — Software Engineer"
+  description="Senior software engineer, currently at Spring Health. Seven years shipping React, Rails, and the occasional design system."
+  locale={locale}
+  pathname={pathname}
+>
+
+  <!-- Hero -->
+  <section class="hero section-border bg-grid">
+    <GraphCanvas density={32} />
+    <div class="hero-overlay">
+      <div class="hero-top">
+        <span class="section-num">0</span>
+        <span class="hero-edition mono-label">HOME · 2026 ED.</span>
+      </div>
+      <h1 class="hero-headline">
+        I write software that other engineers can <em>actually live with</em>.
+      </h1>
+      <div class="hero-bottom">
+        <p class="hero-subtitle">{t('home.heroSubtitle')}</p>
+        <a href="#work" class="hero-scroll mono-label" aria-label={t('home.scroll')}>{t('home.scroll')}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work / Now -->
+  <section id="work" class="section-work section-border">
+    <div class="container">
+      <div class="work-grid">
+        <div class="work-num">
+          <span class="section-num double">00</span>
+        </div>
+        <div class="work-main">
+          <h2 class="work-headline">
+            Seven years of shipping React, Rails, and the occasional design system that didn't immediately rot.
+          </h2>
+          <p class="work-body">
+            From ODS and Three60 to Procore (via Zoolatech) and now Spring Health — each stop shaped how I think about what good software actually means for the people who maintain it.
+          </p>
+          <a href="/experiences" class="work-link">Full narrative →</a>
+        </div>
+        <div class="work-spacer"></div>
+        <div class="work-now">
+          <p class="now-label mono-label">NOW</p>
+          <ul class="now-list">
+            <li class="now-item">
+              <span class="now-name">Spring Health</span>
+              <span class="now-badge muted">2024 →</span>
+            </li>
+            <li class="now-item">
+              <span class="now-name">Liz (side)</span>
+              <span class="now-badge warm">BETA</span>
+            </li>
+            <li class="now-item">
+              <span class="now-name">O Dev Guto</span>
+              <span class="now-badge muted">YOUTUBE</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Channel -->
+  <section class="section-channel section-border">
+    <div class="container">
+      <div class="channel-grid">
+        <div class="channel-left">
+          <span class="section-num">I</span>
+          <span class="channel-tag mono-label">YouTube</span>
+        </div>
+        <div class="channel-main">
+          <h2 class="channel-headline">
+            <em>O Dev Guto</em> — engineering, in Portuguese.
+          </h2>
+          <p class="channel-body">
+            Software in your own language hits differently. No shouting thumbnails, no recycled listicles — just the actual hard parts of the craft, explained clearly.
+          </p>
+          <a href="/channel" class="channel-link">About the channel →</a>
+        </div>
+        <div class="channel-thumb-col">
+          <div class="thumb-placeholder">
+            <span class="thumb-label mono-label">LATEST VIDEO · THUMBNAIL 16:9</span>
+          </div>
+          <div class="thumb-meta">
+            <p class="thumb-title">Por que eu não uso useEffect pra fetch</p>
+            <p class="thumb-info mono-label">14:32 · 2 wks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Index of rest -->
+  <section class="section-index">
+    <div class="container">
+      <div class="index-header">
+        <span class="section-num">II</span>
+        <h2 class="index-headline">The rest of the site.</h2>
+        <span class="index-count mono-label">05 SECTIONS</span>
+      </div>
+      <div class="index-list">
+        <a href="/experiences" class="index-row">
+          <span class="idx-num mono-label">I</span>
+          <span class="idx-title">Experiences</span>
+          <span class="idx-desc">Four companies, told as a story rather than a list.</span>
+          <span class="idx-arrow">→</span>
+        </a>
+        <a href="/shelf" class="index-row">
+          <span class="idx-num mono-label">II</span>
+          <span class="idx-title">Shelf</span>
+          <span class="idx-desc">Snippets, demos, and half-essays made public.</span>
+          <span class="idx-arrow">→</span>
+        </a>
+        <a href="/channel" class="index-row">
+          <span class="idx-num mono-label">III</span>
+          <span class="idx-title">Channel</span>
+          <span class="idx-desc">O Dev Guto — software engineering in Portuguese.</span>
+          <span class="idx-arrow">→</span>
+        </a>
+        <a href="/liz" class="index-row">
+          <span class="idx-num mono-label">IV</span>
+          <span class="idx-title">Liz</span>
+          <span class="idx-desc">A small tool in beta. One thing, done well.</span>
+          <span class="idx-arrow">→</span>
+        </a>
+        <a href="/principles" class="index-row">
+          <span class="idx-num mono-label">V</span>
+          <span class="idx-title">Principles</span>
+          <span class="idx-desc">Working on it. Come back later.</span>
+          <span class="idx-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    position: relative;
+    height: 760px;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .hero-overlay {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding: 40px var(--gutter-x) 48px;
+  }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hero-edition {
+    letter-spacing: 0.15em;
+  }
+
+  .hero-headline {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    max-width: 1060px;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--fg-muted);
+  }
+
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  .hero-scroll {
+    letter-spacing: 0.12em;
+    pointer-events: auto;
+    text-decoration: none;
+    color: var(--fg-muted);
+    transition: color 0.15s;
+  }
+
+  .hero-scroll:hover {
+    color: var(--fg-primary);
+  }
+
+  /* Work / Now */
+  .section-work {
+    padding: 96px 0;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 32px;
+  }
+
+  .work-num {
+    grid-column: 1 / 3;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 6px;
+  }
+
+  .section-num.double {
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .work-main {
+    grid-column: 3 / 9;
+  }
+
+  .work-headline {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    line-height: 1.1;
+    font-weight: 400;
+    margin: 0 0 var(--space-5) 0;
+  }
+
+  .work-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0 0 var(--space-5) 0;
+  }
+
+  .work-link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    text-decoration: none;
+    color: var(--fg-primary);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: border-color 0.15s;
+  }
+
+  .work-link:hover {
+    border-color: var(--fg-primary);
+  }
+
+  .work-spacer {
+    grid-column: 9 / 10;
+  }
+
+  .work-now {
+    grid-column: 10 / 13;
+  }
+
+  .now-label {
+    margin: 0 0 16px 0;
+  }
+
+  .now-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .now-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .now-name {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--fg-primary);
+  }
+
+  .now-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    padding: 2px 6px;
+    border: 1px solid var(--border);
+  }
+
+  .now-badge.muted {
+    color: var(--fg-muted);
+    border-color: var(--border);
+  }
+
+  .now-badge.warm {
+    color: var(--accent-warm);
+    border-color: var(--accent-warm);
+  }
+
+  /* Channel */
+  .section-channel {
+    padding: 80px 0;
+  }
+
+  .channel-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 32px;
+  }
+
+  .channel-left {
+    grid-column: 1 / 3;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 6px;
+  }
+
+  .channel-tag {
+    letter-spacing: 0.1em;
+  }
+
+  .channel-main {
+    grid-column: 3 / 8;
+  }
+
+  .channel-headline {
+    font-family: var(--font-serif);
+    font-size: 2.25rem;
+    font-weight: 400;
+    margin: 0 0 var(--space-4) 0;
+    line-height: 1.15;
+  }
+
+  .channel-headline em {
+    font-style: italic;
+  }
+
+  .channel-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .channel-link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    text-decoration: none;
+    color: var(--fg-primary);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: border-color 0.15s;
+  }
+
+  .channel-link:hover {
+    border-color: var(--fg-primary);
+  }
+
+  .channel-thumb-col {
+    grid-column: 8 / 13;
+  }
+
+  .thumb-placeholder {
+    height: 240px;
+    background: repeating-linear-gradient(
+      135deg,
+      var(--bg-elevated) 0 8px,
+      var(--bg-base) 8px 16px
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .thumb-label {
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  .thumb-title {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    margin: 0 0 4px 0;
+    color: var(--fg-primary);
+  }
+
+  .thumb-info {
+    margin: 0;
+    letter-spacing: 0.08em;
+  }
+
+  /* Index of rest */
+  .section-index {
+    padding: 80px 0 64px;
+  }
+
+  .index-header {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .index-headline {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0;
+    flex: 1;
+  }
+
+  .index-count {
+    letter-spacing: 0.12em;
+    margin-left: auto;
+  }
+
+  .index-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .index-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 380px 60px;
+    gap: 16px;
+    align-items: center;
+    padding: 20px 16px 20px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.15s;
+  }
+
+  .index-row:hover {
+    background-color: var(--bg-elevated);
+  }
+
+  .idx-num {
+    letter-spacing: 0.08em;
+  }
+
+  .idx-title {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+  }
+
+  .idx-desc {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--fg-muted);
+  }
+
+  .idx-arrow {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--fg-muted);
+    text-align: right;
+  }
+
+  @media (max-width: 960px) {
+    .work-grid,
+    .channel-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .work-num,
+    .work-main,
+    .work-spacer,
+    .work-now,
+    .channel-left,
+    .channel-main,
+    .channel-thumb-col {
+      grid-column: 1 / -1;
+    }
+
+    .hero {
+      height: auto;
+      min-height: 560px;
+    }
+
+    .index-row {
+      grid-template-columns: 40px 1fr 40px;
+    }
+
+    .idx-desc {
+      display: none;
+    }
+  }
+</style>

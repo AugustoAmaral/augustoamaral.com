@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useTranslation } from '../i18n/ui';
+
+const locale = 'en' as const;
+const pathname = '/experiences';
+const t = useTranslation(locale);
+
+const chapters = [
+  {
+    num: 'I',
+    years: '2018 — 2020',
+    company: 'ODS',
+    role: 'Junior → Mid Software Engineer',
+    body: 'Where I learned what good code review actually looks like — not as a gate, but as a conversation between two people about how a system should behave.',
+    fig: 'FIG. I.1 — 2018',
+  },
+  {
+    num: 'II',
+    years: '2020 — 2021',
+    company: 'Three60',
+    role: 'Software Engineer',
+    body: 'Smaller team, more ownership, more chances to ship something and watch it break in production. The lesson: most of building software is the conversation around it, occasionally interrupted by typing.',
+    fig: 'FIG. II.1 — 2020',
+  },
+  {
+    num: 'III',
+    years: '2021 — 2024',
+    company: 'Procore (via Zoolatech)',
+    role: 'Senior Software Engineer',
+    body: 'Construction software, used by people who actually wear hard hats. Where I learned how a design system survives — or doesn\'t — contact with a real org.',
+    fig: 'FIG. III.1 — 2021',
+  },
+  {
+    num: 'IV',
+    years: '2024 — now',
+    company: 'Spring Health',
+    role: 'Senior Software Engineer',
+    body: 'Mental health, software-shaped. Building care team experience surfaces in React/TypeScript, with the weight that comes from working on something that matters to the person on the other side of the screen.',
+    fig: 'FIG. IV.1 — 2024',
+  },
+];
+---
+
+<BaseLayout
+  title="Experiences — Augusto Amaral"
+  description="Four jobs, seven years, told as a story. From ODS to Spring Health."
+  locale={locale}
+  pathname={pathname}
+  activeNav="experiences"
+>
+
+  <section class="exp-top section-border">
+    <div class="container">
+      <p class="page-label mono-label">{t('experiences.label')}</p>
+      <h1 class="page-h1">
+        Four jobs, seven years, told <em>as a story</em>.
+      </h1>
+      <p class="page-intro">
+        {t('experiences.intro')} <a href="#" class="inline-link">resume.augustoamaral.com ↗</a>.
+      </p>
+    </div>
+  </section>
+
+  {chapters.map((ch) => (
+    <section class="chapter section-border">
+      <div class="container">
+        <div class="chapter-grid">
+          <div class="chapter-left">
+            <span class="ch-num mono-label">{ch.num}</span>
+            <span class="ch-years mono-label">{ch.years}</span>
+          </div>
+          <div class="chapter-mid">
+            <h2 class="ch-company">{ch.company}</h2>
+            <p class="ch-role mono-label">{ch.role}</p>
+            <p class="ch-body">{ch.body}</p>
+          </div>
+          <div class="chapter-right">
+            <div class="ch-photo-placeholder">
+              <span class="ch-photo-label mono-label">{ch.fig}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+</BaseLayout>
+
+<style>
+  .exp-top {
+    padding: 80px 0;
+  }
+
+  .page-label {
+    margin: 0 0 24px 0;
+    letter-spacing: 0.12em;
+  }
+
+  .page-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    margin: 0 0 var(--space-5) 0;
+    letter-spacing: -0.02em;
+  }
+
+  .page-h1 em {
+    font-style: italic;
+    color: var(--fg-muted);
+  }
+
+  .page-intro {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  .inline-link {
+    color: var(--fg-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: border-color 0.15s;
+  }
+
+  .inline-link:hover {
+    border-color: var(--fg-primary);
+  }
+
+  .chapter {
+    padding: 80px 0;
+  }
+
+  .chapter-grid {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 40px;
+  }
+
+  .chapter-left {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 6px;
+  }
+
+  .ch-num {
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+  }
+
+  .ch-years {
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .chapter-mid {}
+
+  .ch-company {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0 0 8px 0;
+    line-height: 1.1;
+  }
+
+  .ch-role {
+    margin: 0 0 20px 0;
+    letter-spacing: 0.08em;
+  }
+
+  .ch-body {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  .chapter-right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ch-photo-placeholder {
+    height: 340px;
+    background: repeating-linear-gradient(
+      135deg,
+      var(--bg-elevated) 0 8px,
+      var(--bg-base) 8px 16px
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+
+  .ch-photo-label {
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 720px) {
+    .chapter-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .chapter-left {
+      flex-direction: row;
+      gap: 16px;
+    }
+  }
+</style>

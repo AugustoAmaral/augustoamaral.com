@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useTranslation } from '../i18n/ui';
+
+const locale = 'en' as const;
+const pathname = '/liz';
+const t = useTranslation(locale);
+---
+
+<BaseLayout
+  title="Liz — Augusto Amaral"
+  description="A small tool that does one annoying thing well. Built for me. Possibly useful for you."
+  locale={locale}
+  pathname={pathname}
+  activeNav="liz"
+>
+
+  <section class="liz-top section-border">
+    <div class="container">
+      <div class="liz-label-row">
+        <p class="page-label mono-label">{t('liz.label')}</p>
+        <span class="beta-tag">BETA</span>
+      </div>
+      <h1 class="liz-h1">{t('liz.h1')}</h1>
+      <p class="liz-tagline">
+        A small tool that does <em>one annoying thing well</em>. Built for me. Possibly useful for you.
+      </p>
+    </div>
+  </section>
+
+  <section class="liz-what section-border">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <h2 class="sub-h2">{t('liz.whatTitle')}</h2>
+          <p class="sub-body">
+            Liz is a personal digest tool. It watches things you care about — pull requests, issues, inbox threads — and surfaces only what actually needs your attention. No noise, no dashboards, just a daily summary.
+          </p>
+        </div>
+        <div>
+          <h2 class="sub-h2">{t('liz.howTitle')}</h2>
+          <p class="sub-body">
+            You connect your sources once. Liz polls them on a schedule, applies a set of rules you define, and emails you a digest at a time you choose. The rules are simple enough to write in plain language.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="liz-data section-border">
+    <div class="container">
+      <h2 class="data-title">{t('liz.dataTitle')}</h2>
+      <div class="data-table">
+        <div class="data-header">
+          <span class="mono-label">DATA</span>
+          <span class="mono-label">WHY</span>
+          <span class="mono-label">SHARED?</span>
+        </div>
+        <div class="data-row">
+          <span class="row-data">Email</span>
+          <span class="row-why">Auth + digest delivery</span>
+          <span class="row-shared no">No</span>
+        </div>
+        <div class="data-row">
+          <span class="row-data">Session metadata</span>
+          <span class="row-why">Product works</span>
+          <span class="row-shared no">No</span>
+        </div>
+        <div class="data-row">
+          <span class="row-data">Error logs</span>
+          <span class="row-why">Fix bugs</span>
+          <span class="row-shared">Sentry, scrubbed</span>
+        </div>
+      </div>
+      <p class="data-note">
+        <a href="/privacy#liz" class="inline-link">{t('liz.privacyLink')}</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="liz-cta">
+    <div class="container cta-container">
+      <a href="#" class="cta-btn">{t('liz.ctaLink')}</a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .liz-top {
+    padding: 80px 0;
+  }
+
+  .liz-label-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .page-label {
+    margin: 0;
+    letter-spacing: 0.12em;
+  }
+
+  .beta-tag {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-warm);
+    border: 1px solid var(--accent-warm);
+    padding: 2px 8px;
+  }
+
+  .liz-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(4rem, 8vw, 7rem);
+    font-weight: 400;
+    line-height: 0.95;
+    margin: 0 0 var(--space-5) 0;
+    letter-spacing: -0.02em;
+  }
+
+  .liz-tagline {
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 640px;
+    color: var(--fg-muted);
+  }
+
+  .liz-tagline em {
+    font-style: italic;
+    color: var(--fg-primary);
+  }
+
+  .liz-what {
+    padding: 80px 0;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+
+  .sub-h2 {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .sub-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  .liz-data {
+    padding: 80px 0;
+  }
+
+  .data-title {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 0 0 32px 0;
+  }
+
+  .data-table {
+    border-top: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+
+  .data-header,
+  .data-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-header {
+    border-bottom: 1px solid var(--fg-muted);
+  }
+
+  .row-data {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--fg-primary);
+  }
+
+  .row-why {
+    font-size: 0.9375rem;
+    color: var(--fg-muted);
+  }
+
+  .row-shared {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--fg-muted);
+  }
+
+  .row-shared.no {
+    color: var(--fg-primary);
+  }
+
+  .data-note {
+    margin: 16px 0 0 0;
+  }
+
+  .inline-link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--fg-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .inline-link:hover {
+    color: var(--fg-primary);
+    border-color: var(--fg-primary);
+  }
+
+  .liz-cta {
+    padding: 80px 0;
+  }
+
+  .cta-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-btn {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    color: var(--accent-warm);
+    border: 1px solid var(--accent-warm);
+    padding: 14px 32px;
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+
+  .cta-btn:hover {
+    background-color: rgba(212, 113, 94, 0.1);
+  }
+
+  @media (max-width: 720px) {
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+</style>

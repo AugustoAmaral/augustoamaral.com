@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslation } from '../../i18n/ui';
+
+const locale = 'pt' as const;
+const pathname = '/pt/shelf';
+const t = useTranslation(locale);
+
+const items = [
+  { kind: 'snippet', name: 'tiny-lru.ts', about: 'Um cache LRU em 30 linhas. Sem dependências.', date: '2026 · 04' },
+  { kind: 'ensaio', name: 'por que minhas CSS variables são globais', about: 'Sobre o argumento por menos tokens com escopo, não mais.', date: '2026 · 03' },
+  { kind: 'demo', name: 'force-graph playground', about: 'O grafo da homepage, com sliders.', date: '2026 · 02' },
+  { kind: 'snippet', name: 'useDebouncedValue.ts', about: 'O hook que todo codebase acaba reescrevendo.', date: '2026 · 02' },
+  { kind: 'ensaio', name: 'entregando um design system na Procore', about: 'O que sobreviveu ao contato com a org, o que não sobreviveu.', date: '2026 · 01' },
+  { kind: 'talk', name: 'Rails @ escala, em 20 minutos', about: 'Slides da talk interna + transcrição.', date: '2025 · 11' },
+  { kind: 'demo', name: 'calendar-grid.css', about: 'Um calendário semanal em CSS grid puro.', date: '2025 · 10' },
+  { kind: 'snippet', name: 'json-diff.rb', about: 'JSON diff recursivo com consciência estrutural.', date: '2025 · 09' },
+];
+---
+
+<BaseLayout
+  title="Biblioteca — Augusto Amaral"
+  description="Snippets, demos, meios-ensaios. Alguns são úteis. Nenhum é um produto."
+  locale={locale}
+  pathname={pathname}
+  activeNav="shelf"
+>
+
+  <section class="shelf-top section-border">
+    <div class="container">
+      <p class="page-label mono-label">{t('shelf.label')}</p>
+      <h1 class="page-h1">
+        Uma estante pública de <em>pequenas coisas que fiz</em>.
+      </h1>
+      <p class="page-intro">{t('shelf.intro')}</p>
+    </div>
+  </section>
+
+  <section class="shelf-table">
+    <div class="container">
+      <div class="table-wrap">
+        <div class="table-header">
+          <span class="col-kind mono-label">TIPO</span>
+          <span class="col-name mono-label">NOME</span>
+          <span class="col-about mono-label">SOBRE</span>
+          <span class="col-date mono-label">DATA</span>
+          <span class="col-arrow"></span>
+        </div>
+        {items.map((item) => (
+          <a href="#" class="table-row">
+            <span class="col-kind row-kind mono-label">{item.kind}</span>
+            <span class="col-name row-name">{item.name}</span>
+            <span class="col-about row-about">{item.about}</span>
+            <span class="col-date row-date mono-label">{item.date}</span>
+            <span class="col-arrow row-arrow">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .shelf-top {
+    padding: 80px 0;
+  }
+
+  .page-label {
+    margin: 0 0 24px 0;
+    letter-spacing: 0.12em;
+  }
+
+  .page-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    margin: 0 0 var(--space-5) 0;
+    letter-spacing: -0.02em;
+  }
+
+  .page-h1 em {
+    font-style: italic;
+    color: var(--fg-muted);
+  }
+
+  .page-intro {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  .shelf-table {
+    padding: 48px 0 80px;
+  }
+
+  .table-wrap {
+    border-top: 1px solid var(--border);
+  }
+
+  .table-header,
+  .table-row {
+    display: grid;
+    grid-template-columns: 120px 240px 1fr 120px 60px;
+    gap: 16px;
+    padding: 16px 16px 16px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+
+  .table-header {
+    border-bottom: 1px solid var(--fg-muted);
+  }
+
+  .table-row {
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.15s;
+  }
+
+  .table-row:hover {
+    background-color: var(--bg-elevated);
+  }
+
+  .row-kind {
+    color: var(--fg-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .row-name {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--fg-primary);
+  }
+
+  .row-about {
+    font-size: 0.9375rem;
+    color: var(--fg-muted);
+  }
+
+  .row-date {
+    color: var(--fg-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .row-arrow {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--fg-muted);
+    text-align: right;
+  }
+
+  @media (max-width: 720px) {
+    .table-header,
+    .table-row {
+      grid-template-columns: 80px 1fr 60px;
+    }
+
+    .col-about,
+    .col-date {
+      display: none;
+    }
+  }
+</style>
