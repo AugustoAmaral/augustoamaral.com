@@ -2,13 +2,7 @@
   "$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
   "name": "homepage",
   "compatibility_date": "2026-04-26",
-  "observability": {
-    "enabled": true
-  },
-  "assets": {
-    "directory": "site/dist"
-  },
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+  "observability": { "enabled": true },
+  "assets": { "directory": "site/dist" },
+  "compatibility_flags": ["nodejs_compat"],
 }
