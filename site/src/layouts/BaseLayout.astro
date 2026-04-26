@@ -44,10 +44,10 @@ const ptUrl = locale === 'en'
   </head>
   <body>
     <a href="#main" class="skip-link">{t('skipToContent')}</a>
-    <Header locale={locale} pathname={pathname} activeNav={activeNav} />
+    <Header locale={locale} activeNav={activeNav} />
     <main id="main">
       <slot />
     </main>
-    <Footer locale={locale} />
+    <Footer locale={locale} pathname={pathname} />
   </body>
 </html>

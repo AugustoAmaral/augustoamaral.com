@@ -1,15 +1,13 @@
 ---
-import LanguageToggle from './LanguageToggle.astro';
 import { useTranslation } from '../i18n/ui';
 import type { Locale } from '../i18n/ui';
 
 interface Props {
   locale: Locale;
-  pathname: string;
   activeNav?: string;
 }
 
-const { locale, pathname, activeNav } = Astro.props;
+const { locale, activeNav } = Astro.props;
 const t = useTranslation(locale);
 
 const logoHref = locale === 'pt' ? '/pt/' : '/';
@@ -35,20 +33,17 @@ const navItems: NavItem[] = [
     <span class="logo-text">augustoamaral.com</span>
   </a>
 
-  <div class="header-right">
-    <nav class="site-nav" aria-label="Main navigation">
-      {navItems.map(item => (
-        <a
-          href={item.href}
-          class:list={['nav-link', { active: activeNav === item.key }]}
-          aria-current={activeNav === item.key ? 'page' : undefined}
-        >
-          {item.label}
-        </a>
-      ))}
-    </nav>
-    <LanguageToggle locale={locale} pathname={pathname} />
-  </div>
+  <nav class="site-nav" aria-label="Main navigation">
+    {navItems.map(item => (
+      <a
+        href={item.href}
+        class:list={['nav-link', { active: activeNav === item.key }]}
+        aria-current={activeNav === item.key ? 'page' : undefined}
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
 </header>
 
 <style>
@@ -87,12 +82,6 @@ const navItems: NavItem[] = [
     color: var(--fg-primary);
   }
 
-  .header-right {
-    display: flex;
-    align-items: baseline;
-    gap: 24px;
-  }
-
   .site-nav {
     display: flex;
     align-items: baseline;
@@ -121,11 +110,6 @@ const navItems: NavItem[] = [
       flex-direction: column;
       gap: 16px;
       align-items: flex-start;
-    }
-
-    .header-right {
-      flex-wrap: wrap;
-      gap: 16px;
     }
 
     .site-nav {

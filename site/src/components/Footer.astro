@@ -1,12 +1,14 @@
 ---
+import LanguageToggle from './LanguageToggle.astro';
 import { useTranslation } from '../i18n/ui';
 import type { Locale } from '../i18n/ui';
 
 interface Props {
   locale: Locale;
+  pathname: string;
 }
 
-const { locale } = Astro.props;
+const { locale, pathname } = Astro.props;
 const t = useTranslation(locale);
 
 const privacyHref = locale === 'pt' ? '/pt/privacy' : '/privacy';
@@ -39,14 +41,10 @@ const privacyHref = locale === 'pt' ? '/pt/privacy' : '/privacy';
       </ul>
     </div>
 
-    <!-- Col 4: Copyright + locale marker -->
+    <!-- Col 4: Copyright + language toggle -->
     <div class="footer-col footer-meta">
       <p class="copyright">{t('footer.copyright')}</p>
-      <p class="locale-marker">
-        <span class:list={['locale-opt', { 'locale-active': locale === 'en' }]}>EN</span>
-        <span class="locale-sep">·</span>
-        <span class:list={['locale-opt', { 'locale-active': locale === 'pt' }]}>PT</span>
-      </p>
+      <LanguageToggle locale={locale} pathname={pathname} />
     </div>
   </div>
 </footer>
@@ -111,28 +109,6 @@ const privacyHref = locale === 'pt' ? '/pt/privacy' : '/privacy';
     color: var(--fg-muted);
     margin: 0;
     letter-spacing: 0.05em;
-  }
-
-  .locale-marker {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    margin: 0;
-    display: flex;
-    gap: 6px;
-    align-items: center;
-  }
-
-  .locale-opt {
-    color: var(--fg-muted);
-    letter-spacing: 0.08em;
-  }
-
-  .locale-opt.locale-active {
-    color: var(--fg-primary);
-  }
-
-  .locale-sep {
-    color: var(--fg-muted);
   }
 
   @media (max-width: 720px) {
