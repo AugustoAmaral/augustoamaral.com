@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Augusto Amaral - Senior Software Engineer</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+      }
+
+      header {
+        border-bottom: 2px solid #2c3e50;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        font-size: 28px;
+        margin-bottom: 5px;
+      }
+
+      .subtitle {
+        color: #666;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .contact-info {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        font-size: 14px;
+      }
+
+      .contact-info span {
+        color: #555;
+      }
+
+      .contact-info a {
+        color: #2c3e50;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .contact-info a:hover {
+        color: #3498db;
+        text-decoration: underline;
+      }
+
+      h2 {
+        color: #2c3e50;
+        font-size: 18px;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .job {
+        margin-bottom: 20px;
+      }
+
+      .job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 5px;
+      }
+
+      .job-title {
+        font-weight: 600;
+        font-size: 16px;
+        color: #2c3e50;
+        display: block;
+        margin-bottom: 3px;
+      }
+
+      .company {
+        color: #7f8c8d;
+        font-style: italic;
+        display: block;
+        font-size: 13px;
+      }
+
+      .date {
+        color: #7f8c8d;
+        font-size: 14px;
+      }
+
+      ul {
+        margin-left: 20px;
+        margin-top: 5px;
+      }
+
+      li {
+        margin-bottom: 4px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .skills-section {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .skill-category {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .skill-category strong {
+        color: #2c3e50;
+        display: block;
+        margin-bottom: 3px;
+      }
+
+      .skill-category p {
+        font-size: 14px;
+        color: #555;
+      }
+
+      .education-item {
+        margin-bottom: 10px;
+      }
+
+      .education-title {
+        font-weight: 600;
+        color: #2c3e50;
+      }
+
+      .education-details {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .languages {
+        display: flex;
+        gap: 20px;
+        font-size: 14px;
+      }
+
+      @media print {
+        body {
+          padding: 0;
+          max-width: 100%;
+        }
+        h2 {
+          page-break-after: avoid;
+        }
+        .job-header {
+          page-break-after: avoid;
+          page-break-inside: avoid;
+        }
+        .job ul {
+          orphans: 2;
+          widows: 2;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Augusto Amaral</h1>
+      <div class="subtitle">Senior Software Engineer</div>
+      <div class="contact-info">
+        <span>📧 <a href="mailto:contact@augustoamaral.com">contact@augustoamaral.com</a></span>
+        <span>📱 <a href="tel:+5522998160639">+55 22 9.98160-7639</a></span>
+        <span>🔗 <a href="https://linkedin.com/in/auamaral" target="_blank" rel="noopener noreferrer">linkedin.com/in/auamaral</a></span>
+        <span>💻 <a href="https://github.com/AugustoAmaral" target="_blank" rel="noopener noreferrer">github.com/AugustoAmaral</a></span>
+        <span>📍 Campos dos Goytacazes, RJ, Brazil</span>
+      </div>
+    </header>
+
+    <h2>Professional Summary</h2>
+    <p style="font-size: 14px; margin-bottom: 15px">
+      Senior Software Engineer and Frontend Team Lead with 7+ years of experience building scalable enterprise solutions. Expert in React, TypeScript, Python,
+      and Ruby on Rails with proven track record leading frontend teams and architecting design systems. Demonstrated impact: 80% cost reduction in testing
+      infrastructure, 90%+ code coverage, and zero-downtime product launches.
+    </p>
+
+    <h2>Professional Experience</h2>
+
+    <div class="job">
+      <div class="job-header">
+        <div>
+          <span class="job-title">Senior Software Engineer & Team Lead</span>
+          <span class="company">Three60 Energy / Maiella, Norway/Italy</span>
+        </div>
+        <span class="date">February 2024 - November 2025</span>
+      </div>
+      <ul>
+        <li>Led a 3 person frontend team developing BI solutions for oil & gas industry, owning architecture decisions and delivery strategy</li>
+        <li>Built design system and component library with Storybook achieving 90%+ test coverage across multiple products</li>
+        <li>Reduced infrastructure costs by 80% replacing Chromatic with custom Playwright based visual regression testing solution</li>
+        <li>Architected end-to-end type safety using Elysia + Eden Treaty, eliminating API contract bugs across monorepo</li>
+        <li>Built data visualization dashboards using React, TypeScript, and ECharts; contributed Python backend services</li>
+        <li>Developed CI/CD pipelines with GitHub Actions and Azure DevOps with intelligent caching</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div>
+          <span class="job-title">Mid Software Engineer</span>
+          <span class="company">Zoolatech / Procore, USA</span>
+        </div>
+        <span class="date">July 2022 - February 2024</span>
+      </div>
+      <ul>
+        <li>Consultant for Procore's 20-year-old Rails/React enterprise construction management platform</li>
+        <li>Improved test coverage by 40% and delivered critical features for budget management module</li>
+        <li>Led cross-team data exposure initiatives; integrated DBT for Reports team</li>
+        <li>Won internal hackathon with landing page solution reducing user navigation by 30%</li>
+        <li>Partnered with PMs and designers throughout feature lifecycle from requirements to delivery</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div>
+          <span class="job-title">CTO & Co-founder</span>
+          <span class="company">Avaliei!, Brazil</span>
+        </div>
+        <span class="date">May 2021 - July 2022</span>
+      </div>
+      <ul>
+        <li>Technical co-founder after being a finalist in Hacking.Rio 2019 (700+ participants); transformed concept into venture-backed startup</li>
+        <li>Architected full-stack solutions in partnership with Vibra Energia S.A.</li>
+        <li>Achieved low operational costs through serverless architecture and automated pipelines</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div>
+          <span class="job-title">Junior Full-stack Developer</span>
+          <span class="company">Odda Digital System, Norway</span>
+        </div>
+        <span class="date">January 2019 - July 2022</span>
+      </div>
+      <ul>
+        <li>Built GraphQL API gateway unifying multiple backend services; developed microservices with Node.js, React, Ruby on Rails</li>
+        <li>Architected event-driven automation using Azure Service Bus, replacing manual ERP data entry</li>
+        <li>Promoted from frontend to full-stack within 6 months</li>
+      </ul>
+    </div>
+
+    <h2>Technical Skills</h2>
+    <div class="skills-section">
+      <div class="skill-category">
+        <strong>Languages & Frameworks:</strong>
+        <p>TypeScript, React.js, Ruby on Rails, Python, Node.js, SQL, GraphQL</p>
+      </div>
+      <div class="skill-category">
+        <strong>Tools & Infrastructure:</strong>
+        <p>Storybook, Playwright, Jest, Cypress, Docker, Git, CI/CD, AWS, Azure DevOps, PostgreSQL, MongoDB, Redux</p>
+      </div>
+    </div>
+
+    <h2>Education</h2>
+    <div class="education-item">
+      <div class="education-title">Bachelor of Computer Science</div>
+      <div class="education-details">UENF - Universidade Estadual Norte Fluminense, Brazil | 2018 - 2025</div>
+    </div>
+
+    <h2>Notable Achievements</h2>
+    <ul style="font-size: 14px">
+      <li><strong>Hacking.Rio 2019 cluster winner:</strong> Competed against 700+ participants; led to founding Avaliei! with Vibra Energia S.A.</li>
+      <li><strong>Procore Hackathon Winner:</strong> Landing page solution reducing user navigation by 30%</li>
+      <li><strong>Stanford Code in Place 2020:</strong> Selected for competitive global programming course, final project featured in official gallery</li>
+    </ul>
+
+    <h2>Languages</h2>
+    <div class="languages">
+      <span><strong>Portuguese:</strong> Native</span>
+      <span><strong>English:</strong> Fluent</span>
+      <span><strong>Spanish:</strong> Advanced</span>
+    </div>
+  </body>
+</html>
