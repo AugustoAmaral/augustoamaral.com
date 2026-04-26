@@ -109,38 +109,48 @@ const t = useTranslation(locale);
         <h2 class="index-headline">The rest of the site.</h2>
         <span class="index-count mono-label">05 SECTIONS</span>
       </div>
-      <div class="index-list">
-        <a href="/experiences" class="index-row">
+    </div>
+    <div class="index-list">
+      <a href="/experiences" class="index-row">
+        <div class="container index-row-inner">
           <span class="idx-num mono-label">I</span>
           <span class="idx-title">Experiences</span>
           <span class="idx-desc">Four companies, told as a story rather than a list.</span>
           <span class="idx-arrow">→</span>
-        </a>
-        <a href="/shelf" class="index-row">
+        </div>
+      </a>
+      <a href="/shelf" class="index-row">
+        <div class="container index-row-inner">
           <span class="idx-num mono-label">II</span>
           <span class="idx-title">Shelf</span>
           <span class="idx-desc">Snippets, demos, and half-essays made public.</span>
           <span class="idx-arrow">→</span>
-        </a>
-        <a href="/channel" class="index-row">
+        </div>
+      </a>
+      <a href="/channel" class="index-row">
+        <div class="container index-row-inner">
           <span class="idx-num mono-label">III</span>
           <span class="idx-title">Channel</span>
           <span class="idx-desc">O Dev Guto — software engineering in Portuguese.</span>
           <span class="idx-arrow">→</span>
-        </a>
-        <a href="/liz" class="index-row">
+        </div>
+      </a>
+      <a href="/liz" class="index-row">
+        <div class="container index-row-inner">
           <span class="idx-num mono-label">IV</span>
           <span class="idx-title">Liz</span>
           <span class="idx-desc">A small tool in beta. One thing, done well.</span>
           <span class="idx-arrow">→</span>
-        </a>
-        <a href="/principles" class="index-row">
+        </div>
+      </a>
+      <a href="/principles" class="index-row">
+        <div class="container index-row-inner">
           <span class="idx-num mono-label">V</span>
           <span class="idx-title">Principles</span>
           <span class="idx-desc">Working on it. Come back later.</span>
           <span class="idx-arrow">→</span>
-        </a>
-      </div>
+        </div>
+      </a>
     </div>
   </section>
 
@@ -427,8 +437,6 @@ const t = useTranslation(locale);
     align-items: baseline;
     gap: 24px;
     margin-bottom: 48px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--border);
   }
 
   .index-headline {
@@ -450,11 +458,8 @@ const t = useTranslation(locale);
   }
 
   .index-row {
-    display: grid;
-    grid-template-columns: 60px 1fr 380px 60px;
-    gap: 16px;
-    align-items: center;
-    padding: 20px 16px 20px 0;
+    display: block;
+    padding-block: 20px;
     border-bottom: 1px solid var(--border);
     text-decoration: none;
     color: inherit;
@@ -463,6 +468,13 @@ const t = useTranslation(locale);
 
   .index-row:hover {
     background-color: var(--bg-elevated);
+  }
+
+  .index-row-inner {
+    display: grid;
+    grid-template-columns: 60px 1fr 380px 60px;
+    gap: 16px;
+    align-items: center;
   }
 
   .idx-num {
@@ -509,7 +521,7 @@ const t = useTranslation(locale);
       min-height: 560px;
     }
 
-    .index-row {
+    .index-row-inner {
       grid-template-columns: 40px 1fr 40px;
     }
 

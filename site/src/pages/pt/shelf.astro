@@ -37,26 +37,26 @@ const items = [
   </section>
 
   <section class="shelf-table">
-    <div class="container">
-      <div class="table-wrap">
-        <div class="table-header">
-          <span class="col-kind mono-label">TIPO</span>
-          <span class="col-name mono-label">NOME</span>
-          <span class="col-about mono-label">SOBRE</span>
-          <span class="col-date mono-label">DATA</span>
-          <span class="col-arrow"></span>
-        </div>
-        {items.map((item) => (
-          <a href="#" class="table-row">
-            <span class="col-kind row-kind mono-label">{item.kind}</span>
-            <span class="col-name row-name">{item.name}</span>
-            <span class="col-about row-about">{item.about}</span>
-            <span class="col-date row-date mono-label">{item.date}</span>
-            <span class="col-arrow row-arrow">↗</span>
-          </a>
-        ))}
+    <div class="table-header">
+      <div class="container table-row-inner">
+        <span class="col-kind mono-label">TIPO</span>
+        <span class="col-name mono-label">NOME</span>
+        <span class="col-about mono-label">SOBRE</span>
+        <span class="col-date mono-label">DATA</span>
+        <span class="col-arrow"></span>
       </div>
     </div>
+    {items.map((item) => (
+      <a href="#" class="table-row">
+        <div class="container table-row-inner">
+          <span class="col-kind row-kind mono-label">{item.kind}</span>
+          <span class="col-name row-name">{item.name}</span>
+          <span class="col-about row-about">{item.about}</span>
+          <span class="col-date row-date mono-label">{item.date}</span>
+          <span class="col-arrow row-arrow">↗</span>
+        </div>
+      </a>
+    ))}
   </section>
 
 </BaseLayout>
@@ -93,21 +93,14 @@ const items = [
   }
 
   .shelf-table {
-    padding: 48px 0 80px;
-  }
-
-  .table-wrap {
-    border-top: 1px solid var(--border);
+    padding: 0 0 80px;
   }
 
   .table-header,
   .table-row {
-    display: grid;
-    grid-template-columns: 120px 240px 1fr 120px 60px;
-    gap: 16px;
-    padding: 16px 16px 16px 0;
+    display: block;
+    padding-block: 16px;
     border-bottom: 1px solid var(--border);
-    align-items: center;
   }
 
   .table-header {
@@ -122,6 +115,13 @@ const items = [
 
   .table-row:hover {
     background-color: var(--bg-elevated);
+  }
+
+  .table-row-inner {
+    display: grid;
+    grid-template-columns: 120px 240px 1fr 120px 60px;
+    gap: 16px;
+    align-items: center;
   }
 
   .row-kind {
@@ -153,8 +153,7 @@ const items = [
   }
 
   @media (max-width: 720px) {
-    .table-header,
-    .table-row {
+    .table-row-inner {
       grid-template-columns: 80px 1fr 60px;
     }
 
