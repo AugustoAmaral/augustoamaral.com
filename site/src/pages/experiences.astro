@@ -14,6 +14,8 @@ const chapters = [
     role: 'Junior → Mid Software Engineer',
     body: 'Where I learned what good code review actually looks like — not as a gate, but as a conversation between two people about how a system should behave.',
     fig: 'FIG. I.1 — 2018',
+    photo: 'ods',
+    alt: 'ODS team gathering — four engineers at a bar table.',
   },
   {
     num: 'II',
@@ -22,29 +24,45 @@ const chapters = [
     role: 'Software Engineer',
     body: 'Smaller team, more ownership, more chances to ship something and watch it break in production. The lesson: most of building software is the conversation around it, occasionally interrupted by typing.',
     fig: 'FIG. II.1 — 2020',
+    photo: 'three60',
+    alt: 'Three60 team out for drinks at a London pub.',
   },
   {
     num: 'III',
-    years: '2021 — 2024',
-    company: 'Procore (via Zoolatech)',
-    role: 'Senior Software Engineer',
-    body: 'Construction software, used by people who actually wear hard hats. Where I learned how a design system survives — or doesn\'t — contact with a real org.',
+    years: '2021 — 2022',
+    company: 'Avaliei',
+    role: 'CTO & Co-founder',
+    body: 'Hackathon-winning startup with Vibra Energia as the partner. Where I learned that being your own architect means owning every trade-off, and that "serverless" reads great on a deck until the partner needs a new endpoint by Friday.',
     fig: 'FIG. III.1 — 2021',
+    photo: 'avaliei',
+    alt: 'Avaliei team visiting Vibra Energia, in front of the BR mural.',
   },
   {
     num: 'IV',
+    years: '2022 — 2024',
+    company: 'Procore (via Zoolatech)',
+    role: 'Senior Software Engineer',
+    body: 'Construction software, used by people who actually wear hard hats. Where I learned how a design system survives — or doesn\'t — contact with a real org.',
+    fig: 'FIG. IV.1 — 2022',
+    photo: 'zoolatech',
+    alt: 'Zoolatech evening event — three of us holding the team trophy.',
+  },
+  {
+    num: 'V',
     years: '2024 — now',
     company: 'Spring Health',
     role: 'Senior Software Engineer',
     body: 'Mental health, software-shaped. Building care team experience surfaces in React/TypeScript, with the weight that comes from working on something that matters to the person on the other side of the screen.',
-    fig: 'FIG. IV.1 — 2024',
+    fig: 'FIG. V.1 — 2024',
+    photo: null,
+    alt: null,
   },
 ];
 ---
 
 <BaseLayout
   title="Experiences — Augusto Amaral"
-  description="Four jobs, seven years, told as a story. From ODS to Spring Health."
+  description="Five jobs, eight years, told as a story. From ODS to Spring Health."
   locale={locale}
   pathname={pathname}
   activeNav="experiences"
@@ -54,7 +72,7 @@ const chapters = [
     <div class="container">
       <p class="page-label mono-label">{t('experiences.label')}</p>
       <h1 class="page-h1">
-        Four jobs, seven years, told <em>as a story</em>.
+        Five jobs, eight years, told <em>as a story</em>.
       </h1>
       <p class="page-intro">
         {t('experiences.intro')} <a href="#" class="inline-link">resume.augustoamaral.com ↗</a>.
@@ -76,9 +94,24 @@ const chapters = [
             <p class="ch-body">{ch.body}</p>
           </div>
           <div class="chapter-right">
-            <div class="ch-photo-placeholder">
-              <span class="ch-photo-label mono-label">{ch.fig}</span>
-            </div>
+            {ch.photo ? (
+              <figure class="ch-photo">
+                <picture>
+                  <source srcset={`/photos/${ch.photo}.webp`} type="image/webp" />
+                  <img
+                    src={`/photos/${ch.photo}.jpg`}
+                    alt={ch.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+                <figcaption class="ch-photo-label mono-label">{ch.fig}</figcaption>
+              </figure>
+            ) : (
+              <div class="ch-photo-placeholder">
+                <span class="ch-photo-label mono-label">{ch.fig}</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -195,6 +228,25 @@ const chapters = [
     display: flex;
     align-items: flex-end;
     padding: 16px;
+  }
+
+  .ch-photo {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ch-photo picture,
+  .ch-photo img {
+    display: block;
+    width: 100%;
+  }
+
+  .ch-photo img {
+    height: 340px;
+    object-fit: cover;
+    background: var(--bg-elevated);
   }
 
   .ch-photo-label {
