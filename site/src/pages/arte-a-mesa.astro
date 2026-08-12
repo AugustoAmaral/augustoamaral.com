@@ -157,7 +157,7 @@ const shots = [
   .data-title { font-family: var(--font-serif); font-size: 2rem; font-weight: 400; margin: 0; }
   .shots-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
     gap: 32px;
     margin-top: 32px;
   }
