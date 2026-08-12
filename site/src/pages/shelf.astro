@@ -6,15 +6,8 @@ const locale = 'en' as const;
 const pathname = '/shelf';
 const t = useTranslation(locale);
 
-const items = [
-  { kind: 'snippet', name: 'tiny-lru.ts', about: 'A 30-line LRU cache. No deps.', date: '2026 · 04' },
-  { kind: 'essay', name: 'why my CSS variables are global', about: 'On the case for fewer scoped tokens, not more.', date: '2026 · 03' },
-  { kind: 'demo', name: 'force-graph playground', about: 'The graph from the homepage, with sliders.', date: '2026 · 02' },
-  { kind: 'snippet', name: 'useDebouncedValue.ts', about: 'The hook every codebase eventually rewrites itself.', date: '2026 · 02' },
-  { kind: 'essay', name: 'shipping a design system at Procore', about: "What survived contact with the org, what didn't.", date: '2026 · 01' },
-  { kind: 'talk', name: 'Rails @ scale, in 20 minutes', about: 'Internal talk slides + transcript.', date: '2025 · 11' },
-  { kind: 'demo', name: 'calendar-grid.css', about: 'A weekly calendar in pure CSS grid.', date: '2025 · 10' },
-  { kind: 'snippet', name: 'json-diff.rb', about: 'Recursive JSON diff with structural awareness.', date: '2025 · 09' },
+const snippets = [
+  { kind: 'snippet', name: 'git-clean-branches', about: 'Deletes local branches whose remote is gone. One alias: clb.', date: '2026 · 08', href: '/shelf/clean-branches' },
 ];
 ---
 
@@ -36,7 +29,34 @@ const items = [
     </div>
   </section>
 
+  <section class="shelf-systems">
+    <div class="container">
+      <h2 class="zone-title mono-label">{t('shelf.systemsTitle')}</h2>
+    </div>
+    <div class="index-list">
+      <a href="/shelf/claude" class="index-row">
+        <div class="container index-row-inner">
+          <span class="idx-num mono-label">I</span>
+          <span class="idx-title">How I use Claude</span>
+          <span class="idx-desc">The rules, the aliases, the safety posture, the other models.</span>
+          <span class="idx-arrow">→</span>
+        </div>
+      </a>
+      <a href="/shelf/second-brain" class="index-row">
+        <div class="container index-row-inner">
+          <span class="idx-num mono-label">II</span>
+          <span class="idx-title">Second brain</span>
+          <span class="idx-desc">Two vaults written by agents, for agents. One runs itself at night.</span>
+          <span class="idx-arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
   <section class="shelf-table">
+    <div class="container">
+      <h2 class="zone-title mono-label">{t('shelf.snippetsTitle')}</h2>
+    </div>
     <div class="table-header">
       <div class="container table-row-inner">
         <span class="col-kind mono-label">KIND</span>
@@ -46,14 +66,14 @@ const items = [
         <span class="col-arrow"></span>
       </div>
     </div>
-    {items.map((item) => (
-      <a href="#" class="table-row">
+    {snippets.map((item) => (
+      <a href={item.href} class="table-row">
         <div class="container table-row-inner">
           <span class="col-kind row-kind mono-label">{item.kind}</span>
           <span class="col-name row-name">{item.name}</span>
           <span class="col-about row-about">{item.about}</span>
           <span class="col-date row-date mono-label">{item.date}</span>
-          <span class="col-arrow row-arrow">↗</span>
+          <span class="col-arrow row-arrow">→</span>
         </div>
       </a>
     ))}
@@ -90,6 +110,59 @@ const items = [
     font-size: 0.875rem;
     color: var(--fg-muted);
     margin: 0;
+  }
+
+  .zone-title {
+    margin: 48px 0 16px;
+    letter-spacing: 0.12em;
+  }
+
+  .index-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .index-row {
+    display: block;
+    padding-block: 20px;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.15s;
+  }
+
+  .index-row:hover {
+    background-color: var(--bg-elevated);
+  }
+
+  .index-row-inner {
+    display: grid;
+    grid-template-columns: 60px 1fr 380px 60px;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .idx-num {
+    letter-spacing: 0.08em;
+  }
+
+  .idx-title {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+  }
+
+  .idx-desc {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--fg-muted);
+  }
+
+  .idx-arrow {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--fg-muted);
+    text-align: right;
   }
 
   .shelf-table {
@@ -150,6 +223,16 @@ const items = [
     font-size: 0.875rem;
     color: var(--fg-muted);
     text-align: right;
+  }
+
+  @media (max-width: 960px) {
+    .index-row-inner {
+      grid-template-columns: 40px 1fr 40px;
+    }
+
+    .idx-desc {
+      display: none;
+    }
   }
 
   @media (max-width: 720px) {
