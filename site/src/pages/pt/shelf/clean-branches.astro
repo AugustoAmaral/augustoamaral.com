@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const locale = 'pt' as const;
+const pathname = '/pt/shelf/clean-branches';
+
+const snippet = `git-clean-branches() {
+    git fetch -p && git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d
+}
+
+alias clb="git-clean-branches"`;
+---
+
+<BaseLayout
+  title="git-clean-branches — Augusto Amaral"
+  description="Um one-liner de zsh que apaga branches locais cujo remoto já era."
+  locale={locale}
+  pathname={pathname}
+  activeNav="shelf"
+>
+
+  <section class="cb-top section-border">
+    <div class="container">
+      <p class="page-label mono-label">BIBLIOTECA / SNIPPET</p>
+      <h1 class="page-h1">git-clean-branches.</h1>
+    </div>
+  </section>
+
+  <section class="cb-section section-border">
+    <div class="container">
+      <pre class="code-block">{snippet}</pre>
+      <p class="sub-body">Depois de um PR mergeado, o branch remoto morre mas o local fica. Isso limpa as refs de tracking (fetch -p), acha os branches locais cujo upstream sumiu, e apaga. Digitado em três letras: clb.</p>
+      <p class="sub-body">A segurança está no -d minúsculo — o git se recusa a apagar qualquer coisa não mergeada. O pior caso é um aviso de "branch not fully merged", que é exatamente a hora em que você quer ser interrompido.</p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .cb-top {
+    padding: 80px 0;
+  }
+
+  .page-label {
+    margin: 0 0 24px 0;
+    letter-spacing: 0.12em;
+  }
+
+  .page-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .cb-section {
+    padding: 80px 0;
+  }
+
+  .code-block {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    overflow-x: auto;
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .sub-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0 0 var(--space-4) 0;
+    max-width: 720px;
+  }
+
+  .sub-body:last-child {
+    margin-bottom: 0;
+  }
+</style>
