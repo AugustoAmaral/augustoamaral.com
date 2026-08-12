@@ -5,12 +5,6 @@ import { useTranslation } from '../i18n/ui';
 const locale = 'en' as const;
 const pathname = '/channel';
 const t = useTranslation(locale);
-
-const episodes = [
-  { title: 'Por que eu não uso useEffect pra fetch', duration: '14:32', age: '2 wks' },
-  { title: 'TypeScript: o que é variance e por que importa', duration: '22:14', age: '1 mo' },
-  { title: 'Como ler código que você acabou de herdar', duration: '18:47', age: '6 wks' },
-];
 ---
 
 <BaseLayout
@@ -50,20 +44,9 @@ const episodes = [
     </div>
   </section>
 
-  <section class="channel-episodes">
+  <section class="channel-link-out">
     <div class="container">
-      <h2 class="episodes-title">{t('channel.recentTitle')}</h2>
-      <div class="episodes-grid">
-        {episodes.map((ep) => (
-          <a href="#" class="episode-card">
-            <div class="ep-thumb">
-              <span class="ep-thumb-label mono-label">THUMBNAIL 16:9</span>
-            </div>
-            <p class="ep-title">{ep.title}</p>
-            <p class="ep-meta mono-label">{ep.duration} · {ep.age}</p>
-          </a>
-        ))}
-      </div>
+      <a href="https://www.youtube.com/@odevguto" class="inline-link" target="_blank" rel="noopener">youtube.com/@odevguto ↗</a>
     </div>
   </section>
 
@@ -125,72 +108,26 @@ const episodes = [
     margin: 0;
   }
 
-  .channel-episodes {
-    padding: 80px 0;
-  }
-
-  .episodes-title {
-    font-family: var(--font-serif);
-    font-size: 2rem;
-    font-weight: 400;
-    margin: 0 0 48px 0;
-  }
-
-  .episodes-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-
-  .episode-card {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-
-  .ep-thumb {
-    height: 180px;
-    background: repeating-linear-gradient(
-      135deg,
-      var(--bg-elevated) 0 8px,
-      var(--bg-base) 8px 16px
-    );
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 12px;
-    transition: opacity 0.15s;
-  }
-
-  .episode-card:hover .ep-thumb {
-    opacity: 0.8;
-  }
-
-  .ep-thumb-label {
-    letter-spacing: 0.1em;
-    text-align: center;
-  }
-
-  .ep-title {
-    font-size: 0.9375rem;
+  .inline-link {
     color: var(--fg-primary);
-    margin: 0 0 6px 0;
-    line-height: 1.4;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: border-color 0.15s;
   }
 
-  .ep-meta {
-    margin: 0;
-    letter-spacing: 0.08em;
+  .inline-link:hover {
+    border-color: var(--fg-primary);
+  }
+
+  .channel-link-out {
+    padding: 0 0 80px;
   }
 
   @media (max-width: 720px) {
     .two-col {
       grid-template-columns: 1fr;
       gap: 40px;
-    }
-
-    .episodes-grid {
-      grid-template-columns: 1fr;
     }
   }
 </style>

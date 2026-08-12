@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const locale = 'pt' as const;
+const pathname = '/pt/shelf/claude';
+---
+
+<BaseLayout
+  title="Como eu uso Claude — Augusto Amaral"
+  description="O contrato com meu agente de uso diário: segunda cabeça, camada de segurança invertida, uma config em três máquinas."
+  locale={locale}
+  pathname={pathname}
+  activeNav="shelf"
+>
+
+  <section class="claude-top section-border">
+    <div class="container">
+      <p class="page-label mono-label">BIBLIOTECA / SISTEMA I</p>
+      <h1 class="page-h1">Como eu uso <em>Claude</em>.</h1>
+    </div>
+  </section>
+
+  <section class="claude-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">Segunda cabeça</h2>
+      <p class="sub-body">
+        Claude Code é meu daily driver, e o contrato está escrito: ele age como uma segunda cabeça, não como um prestador de serviço processando tickets. A regra que sustenta tudo: se a resposta está no código, no git, nos logs ou na doc, o agente acha sozinho — nunca me pergunta o que pode verificar. Se a resposta está na minha cabeça — intenção, escopo, o "por que isso é assim" — ele pergunta cedo, junto com a leitura dele. Decisões ele toma; informação que falta ele pergunta.
+      </p>
+    </div>
+  </section>
+
+  <section class="claude-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">A camada de segurança é invertida</h2>
+      <p class="sub-body">
+        Eu rodo com as confirmações do harness desligadas. Nenhum prompt de "permitir esse comando?" — o que significa que o próprio agente é a única camada de segurança. Então a política não mora na boa vontade do agente: ações destrutivas exigem confirmação explícita e fresca, toda vez, no escopo exato do que foi pedido. Escritas em sistemas externos — Slack, issue trackers, qualquer coisa que outras pessoas veem — são tratadas como destrutivas mesmo quando nada é apagado. E o que dá pra garantir por config, é garantido por config: uma deny list declarativa nos settings, pro harness bloquear o que a memória poderia esquecer.
+      </p>
+    </div>
+  </section>
+
+  <section class="claude-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">Aliases</h2>
+      <p class="sub-body">Presets de modelo que eu realmente digito:</p>
+      <pre class="code-block">alias sonnet='claude --model "claude-sonnet-5[1m]" --effort xhigh --dangerously-skip-permissions'
+alias opus='claude --model "claude-opus-5[1m]" --effort xhigh --dangerously-skip-permissions'
+alias fable='claude --model fable --dangerously-skip-permissions --effort xhigh'
+
+# other models through the same harness
+alias clamma='OLLAMA_HOST="&lt;homelab&gt;" ollama launch claude'
+alias oclaud='ollama launch claude --model glm-5.2:cloud -- --dangerously-skip-permissions'</pre>
+    </div>
+  </section>
+
+  <section class="claude-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">Uma config, três máquinas</h2>
+      <p class="sub-body">
+        O setup inteiro — regras globais, settings, skills, regras de estilo de código — vive num repo de dotfiles; ~/.claude é um symlink pra dentro dele. Mac pessoal, Mac do trabalho e um devbox na nuvem rodam o mesmo cérebro. Transcripts e histórico nunca são commitados: podem conter segredos.
+      </p>
+    </div>
+  </section>
+
+  <section class="claude-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">Além do Claude</h2>
+      <p class="sub-body">
+        O mesmo workflow roda outros modelos pra comparação: OMP (um harness baseado no Pi) com Kimi K3, e modelos de nuvem via ollama. Esse hábito virou um benchmark de verdade — a mesma spec executada de forma independente por quatro modelos, e uma loja hoje roda o vencedor. Essa história está em <a href="/pt/arte-a-mesa" class="inline-link">Arte à Mesa</a>.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .claude-top {
+    padding: 80px 0;
+  }
+
+  .page-label {
+    margin: 0 0 24px 0;
+    letter-spacing: 0.12em;
+  }
+
+  .page-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .page-h1 em {
+    font-style: italic;
+    color: var(--fg-muted);
+  }
+
+  .claude-section {
+    padding: 80px 0;
+  }
+
+  .sub-h2 {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .sub-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0 0 var(--space-4) 0;
+    max-width: 720px;
+  }
+
+  .sub-body:last-child {
+    margin-bottom: 0;
+  }
+
+  .code-block {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    overflow-x: auto;
+    margin: 0;
+  }
+
+  .inline-link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--fg-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .inline-link:hover {
+    color: var(--fg-primary);
+    border-color: var(--fg-primary);
+  }
+</style>

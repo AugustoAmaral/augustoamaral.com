@@ -59,7 +59,11 @@ const t = useTranslation(locale);
             </li>
             <li class="now-item">
               <span class="now-name">Liz (side)</span>
-              <span class="now-badge warm">BETA</span>
+              <span class="now-badge warm">EM PRODUÇÃO</span>
+            </li>
+            <li class="now-item">
+              <span class="now-name">Arte à Mesa (side)</span>
+              <span class="now-badge warm">EM PRODUÇÃO</span>
             </li>
             <li class="now-item">
               <span class="now-name">O Dev Guto</span>
@@ -89,13 +93,9 @@ const t = useTranslation(locale);
           <a href="/pt/channel" class="channel-link">Sobre o canal →</a>
         </div>
         <div class="channel-thumb-col">
-          <div class="thumb-placeholder">
-            <span class="thumb-label mono-label">ÚLTIMO VÍDEO · THUMBNAIL 16:9</span>
-          </div>
-          <div class="thumb-meta">
-            <p class="thumb-title">Por que eu não uso useEffect pra fetch</p>
-            <p class="thumb-info mono-label">14:32 · 2 sem</p>
-          </div>
+          <a href="https://www.youtube.com/@odevguto" class="thumb-placeholder thumb-link" target="_blank" rel="noopener">
+            <span class="thumb-label mono-label">ASSISTIR NO YOUTUBE ↗</span>
+          </a>
         </div>
       </div>
     </div>
@@ -107,7 +107,7 @@ const t = useTranslation(locale);
       <div class="index-header">
         <span class="section-num">II</span>
         <h2 class="index-headline">O resto do site.</h2>
-        <span class="index-count mono-label">05 SEÇÕES</span>
+        <span class="index-count mono-label">06 SEÇÕES</span>
       </div>
     </div>
     <div class="index-list">
@@ -123,7 +123,7 @@ const t = useTranslation(locale);
         <div class="container index-row-inner">
           <span class="idx-num mono-label">II</span>
           <span class="idx-title">Biblioteca</span>
-          <span class="idx-desc">Snippets, demos e meios-ensaios tornados públicos.</span>
+          <span class="idx-desc">Sistemas que eu uso, scripts que eu guardo.</span>
           <span class="idx-arrow">→</span>
         </div>
       </a>
@@ -139,13 +139,21 @@ const t = useTranslation(locale);
         <div class="container index-row-inner">
           <span class="idx-num mono-label">IV</span>
           <span class="idx-title">Liz</span>
-          <span class="idx-desc">Uma ferramenta pequena em beta. Uma coisa, feita bem.</span>
+          <span class="idx-desc">Uma assistente de WhatsApp para um consultório médico. Em produção.</span>
+          <span class="idx-arrow">→</span>
+        </div>
+      </a>
+      <a href="/pt/arte-a-mesa" class="index-row">
+        <div class="container index-row-inner">
+          <span class="idx-num mono-label">V</span>
+          <span class="idx-title">Arte à Mesa</span>
+          <span class="idx-desc">Gestão de locações para uma loja de louças. Em produção.</span>
           <span class="idx-arrow">→</span>
         </div>
       </a>
       <a href="/pt/principles" class="index-row">
         <div class="container index-row-inner">
-          <span class="idx-num mono-label">V</span>
+          <span class="idx-num mono-label">VI</span>
           <span class="idx-title">Princípios</span>
           <span class="idx-desc">Trabalhando nisso. Volte mais tarde.</span>
           <span class="idx-arrow">→</span>
@@ -415,16 +423,13 @@ const t = useTranslation(locale);
     text-align: center;
   }
 
-  .thumb-title {
-    font-family: var(--font-sans);
-    font-size: 0.9375rem;
-    margin: 0 0 4px 0;
-    color: var(--fg-primary);
+  .thumb-link {
+    text-decoration: none;
+    transition: opacity 0.15s;
   }
 
-  .thumb-info {
-    margin: 0;
-    letter-spacing: 0.08em;
+  .thumb-link:hover {
+    opacity: 0.8;
   }
 
   /* Index of rest */

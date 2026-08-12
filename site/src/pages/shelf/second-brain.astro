@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const locale = 'en' as const;
+const pathname = '/shelf/second-brain';
+---
+
+<BaseLayout
+  title="Second brain — Augusto Amaral"
+  description="Two vaults written by agents, for agents. Capture-first, nightly self-consolidation, and a guide-not-executor work twin."
+  locale={locale}
+  pathname={pathname}
+  activeNav="shelf"
+>
+
+  <section class="sb-top section-border">
+    <div class="container">
+      <p class="page-label mono-label">SHELF / SYSTEM II</p>
+      <h1 class="page-h1">A vault written <em>by agents, for agents</em>.</h1>
+    </div>
+  </section>
+
+  <section class="sb-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">The thesis</h2>
+      <p class="sub-body">
+        I don't read my notes. I talk to an agent that reads and writes them for me. Every formatting decision in the vault optimizes for agent retrieval, never for a human reading linearly — that single inversion reshapes everything downstream.
+      </p>
+    </div>
+  </section>
+
+  <section class="sb-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">The rules with names</h2>
+      <div class="rule">
+        <p class="mono-label">CAPTURE-FIRST</p>
+        <p class="sub-body">Capturing costs seconds and never asks where something should be filed. Routing is the nightly routine's job, not mine. The vault that made me decide-at-capture-time is the vault that died.</p>
+      </div>
+      <div class="rule">
+        <p class="mono-label">HUMAN VIEW IS A VERB</p>
+        <p class="sub-body">Briefings and reports are generated on demand and thrown away. A stored summary is a copy, and copies rot.</p>
+      </div>
+      <div class="rule">
+        <p class="mono-label">LIVE STATE LIVES IN ONE PLACE</p>
+        <p class="sub-body">Each front of life has exactly one status file: where it stopped, next step, recent decisions, blockers. Lesson paid for in duplicated-state cleanup.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sb-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">It runs itself at night</h2>
+      <p class="sub-body">
+        An always-on Claude Code instance lives on a small server: a systemd unit keeps a respawn loop alive, remote control lets me capture from my phone, and a nightly cron drains the inbox — routing captures into the wiki, linting the graph, logging what it did, committing. I wake up to a consolidated vault and an audit trail.
+      </p>
+    </div>
+  </section>
+
+  <section class="sb-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">The work twin</h2>
+      <p class="sub-body">
+        Work gets its own vault, PARA-structured, driven by a three-skill cycle: a morning radar that collects everything in parallel and diffs it against yesterday's snapshot; a context assembler that builds briefings for a unit of work — or hands them off as notes any agent can consume, with an expiry date renewed by touch; and a journal that routes what happened and tags evidence of impact for 1:1s and review cycles. Its governing principle: the agent is a guide, not an executor — it says what I can do next, it never offers to do it for me.
+      </p>
+    </div>
+  </section>
+
+  <section class="sb-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">Evolution, honestly</h2>
+      <p class="sub-body">
+        Vault one: a flat folder of notes. Abandoned. Vault two: learned from that — structure, but state still got duplicated, and duplicated state rots. Vault three is the current one, LLM-first from day zero. The system also improves itself: friction gets logged silently, and periodically a skill reads its own feedback and proposes edits to its own spec — a human reviews and commits.
+      </p>
+    </div>
+  </section>
+
+  <section class="sb-section section-border">
+    <div class="container">
+      <div class="flow">
+        <span class="flow-step mono-label">CAPTURE</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step mono-label">CONSOLIDATE (NIGHTLY)</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step mono-label">WORK</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step mono-label">RETRIEVE ON DEMAND</span>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .sb-top {
+    padding: 80px 0;
+  }
+
+  .page-label {
+    margin: 0 0 24px 0;
+    letter-spacing: 0.12em;
+  }
+
+  .page-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .page-h1 em {
+    font-style: italic;
+    color: var(--fg-muted);
+  }
+
+  .sb-section {
+    padding: 80px 0;
+  }
+
+  .sub-h2 {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .sub-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0 0 var(--space-4) 0;
+    max-width: 720px;
+  }
+
+  .sub-body:last-child {
+    margin-bottom: 0;
+  }
+
+  .rule {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .rule:last-child {
+    margin-bottom: 0;
+  }
+
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    padding: 32px 0;
+  }
+
+  .flow-step {
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    letter-spacing: 0.1em;
+  }
+
+  .flow-arrow {
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+  }
+</style>

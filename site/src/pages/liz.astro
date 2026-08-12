@@ -1,15 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { useTranslation } from '../i18n/ui';
+import { Image } from 'astro:assets';
+import simulatorShot from '../assets/liz/simulator.png';
+import dashboardShot from '../assets/liz/dashboard.png';
 
 const locale = 'en' as const;
 const pathname = '/liz';
 const t = useTranslation(locale);
+
+const shots = [
+  { img: simulatorShot, alt: 'Liz conversation simulator', caption: 'FIG. 1 — CONVERSATION SIMULATOR' },
+  { img: dashboardShot, alt: 'Liz clinic dashboard', caption: 'FIG. 2 — CLINIC DASHBOARD' },
+];
 ---
 
 <BaseLayout
   title="Liz — Augusto Amaral"
-  description="A small tool that does one annoying thing well. Built for me. Possibly useful for you."
+  description="Liz — a WhatsApp assistant for a medical practice, in production. Bun, Hono, Claude, Whisper."
   locale={locale}
   pathname={pathname}
   activeNav="liz"
@@ -19,11 +27,11 @@ const t = useTranslation(locale);
     <div class="container">
       <div class="liz-label-row">
         <p class="page-label mono-label">{t('liz.label')}</p>
-        <span class="beta-tag">BETA</span>
+        <span class="beta-tag">{t('liz.statusBadge')}</span>
       </div>
       <h1 class="liz-h1">{t('liz.h1')}</h1>
       <p class="liz-tagline">
-        A small tool that does <em>one annoying thing well</em>. Built for me. Possibly useful for you.
+        A WhatsApp assistant that answers a medical practice's patients — <em>in production, every day</em>.
       </p>
     </div>
   </section>
@@ -34,15 +42,29 @@ const t = useTranslation(locale);
         <div>
           <h2 class="sub-h2">{t('liz.whatTitle')}</h2>
           <p class="sub-body">
-            Liz is a personal digest tool. It watches things you care about — pull requests, issues, inbox threads — and surfaces only what actually needs your attention. No noise, no dashboards, just a daily summary.
+            Liz is the virtual assistant of a pediatric gastroenterology practice. Patients message the clinic on WhatsApp; Liz answers — clinic info, scheduling, general questions — and hands the conversation to a human whenever it should.
           </p>
         </div>
         <div>
           <h2 class="sub-h2">{t('liz.howTitle')}</h2>
           <p class="sub-body">
-            You connect your sources once. Liz polls them on a schedule, applies a set of rules you define, and emails you a digest at a time you choose. The rules are simple enough to write in plain language.
+            Text messages get answered directly. Audio gets transcribed and answered. Scheduling intent is detected and preferences are collected against a real calendar. Behind it: Bun, Hono, PostgreSQL, whatsapp-web.js, Claude for replies, Whisper for audio, Google Calendar for scheduling — plus a Chrome extension that puts a management panel inside WhatsApp Web, and a React dashboard for the clinic team. Runs on Docker, on an ARM box.
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="liz-shots section-border">
+    <div class="container">
+      <h2 class="data-title">In practice</h2>
+      <div class="shots-grid">
+        {shots.map((s) => (
+          <figure class="shot">
+            <Image src={s.img} alt={s.alt} width={900} class="shot-img" />
+            <figcaption class="mono-label">{s.caption}</figcaption>
+          </figure>
+        ))}
       </div>
     </div>
   </section>
@@ -75,12 +97,6 @@ const t = useTranslation(locale);
       <p class="data-note">
         <a href="/privacy#liz" class="inline-link">{t('liz.privacyLink')}</a>
       </p>
-    </div>
-  </section>
-
-  <section class="liz-cta">
-    <div class="container cta-container">
-      <a href="#" class="cta-btn">{t('liz.ctaLink')}</a>
     </div>
   </section>
 
@@ -228,28 +244,29 @@ const t = useTranslation(locale);
     border-color: var(--fg-primary);
   }
 
-  .liz-cta {
+  .liz-shots {
     padding: 80px 0;
   }
 
-  .cta-container {
+  .shots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+    gap: 32px;
+    margin-top: 32px;
+  }
+
+  .shot {
+    margin: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
   }
 
-  .cta-btn {
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    letter-spacing: 0.08em;
-    color: var(--accent-warm);
-    border: 1px solid var(--accent-warm);
-    padding: 14px 32px;
-    text-decoration: none;
-    transition: background-color 0.15s;
-  }
-
-  .cta-btn:hover {
-    background-color: rgba(212, 113, 94, 0.1);
+  .shot-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--border);
   }
 
   @media (max-width: 720px) {

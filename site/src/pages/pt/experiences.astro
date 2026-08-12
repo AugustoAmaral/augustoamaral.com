@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { useTranslation } from '../../i18n/ui';
+import { Image } from 'astro:assets';
+import zoolatechPhoto from '../../assets/experiences/zoolatech.jpg';
+import three60Photo from '../../assets/experiences/three60.jpg';
+import odsPhoto from '../../assets/experiences/ods.jpg';
 
 const locale = 'pt' as const;
 const pathname = '/pt/experiences';
@@ -9,35 +13,39 @@ const t = useTranslation(locale);
 const chapters = [
   {
     num: 'I',
-    years: '2018 — 2020',
-    company: 'ODS',
-    role: 'Junior → Mid Software Engineer',
-    body: 'Onde aprendi como é uma boa revisão de código de verdade — não como um portão, mas como uma conversa entre duas pessoas sobre como um sistema deveria se comportar.',
-    fig: 'FIG. I.1 — 2018',
-  },
-  {
-    num: 'II',
-    years: '2020 — 2021',
-    company: 'Three60',
-    role: 'Software Engineer',
-    body: 'Time menor, mais autonomia, mais chances de entregar algo e ver quebrando em produção. A lição: a maior parte de construir software é a conversa em torno disso, ocasionalmente interrompida por digitação.',
-    fig: 'FIG. II.1 — 2020',
-  },
-  {
-    num: 'III',
-    years: '2021 — 2024',
-    company: 'Procore (via Zoolatech)',
-    role: 'Senior Software Engineer',
-    body: 'Software de construção civil, usado por pessoas que realmente usam capacete. Onde aprendi como um sistema de design sobrevive — ou não — ao contato com uma org de verdade.',
-    fig: 'FIG. III.1 — 2021',
-  },
-  {
-    num: 'IV',
     years: '2024 — agora',
     company: 'Spring Health',
     role: 'Senior Software Engineer',
     body: 'Saúde mental, moldada em software. Construindo interfaces para a equipe de cuidado em React/TypeScript, com o peso de trabalhar em algo que importa para a pessoa do outro lado da tela.',
-    fig: 'FIG. IV.1 — 2024',
+    fig: 'FIG. I.1 — FOTO EM BREVE',
+    photo: null,
+  },
+  {
+    num: 'II',
+    years: '2021 — 2024',
+    company: 'Procore (via Zoolatech)',
+    role: 'Senior Software Engineer',
+    body: 'Software de construção civil, usado por pessoas que realmente usam capacete. Onde aprendi como um sistema de design sobrevive — ou não — ao contato com uma org de verdade.',
+    fig: 'FIG. II.1 — ZOOLATECH TEAM',
+    photo: zoolatechPhoto,
+  },
+  {
+    num: 'III',
+    years: '2020 — 2021',
+    company: 'Three60',
+    role: 'Software Engineer',
+    body: 'Time menor, mais autonomia, mais chances de entregar algo e ver quebrando em produção. A lição: a maior parte de construir software é a conversa em torno disso, ocasionalmente interrompida por digitação.',
+    fig: 'FIG. III.1 — 2020',
+    photo: three60Photo,
+  },
+  {
+    num: 'IV',
+    years: '2018 — 2020',
+    company: 'ODS',
+    role: 'Junior → Mid Software Engineer',
+    body: 'Onde aprendi como é uma boa revisão de código de verdade — não como um portão, mas como uma conversa entre duas pessoas sobre como um sistema deveria se comportar.',
+    fig: 'FIG. IV.1 — 2020',
+    photo: odsPhoto,
   },
 ];
 ---
@@ -57,7 +65,7 @@ const chapters = [
         Quatro empregos, sete anos, contados <em>como uma história</em>.
       </h1>
       <p class="page-intro">
-        {t('experiences.intro')} <a href="#" class="inline-link">resume.augustoamaral.com ↗</a>.
+        {t('experiences.intro')} <a href="https://resume.augustoamaral.com" class="inline-link" target="_blank" rel="noopener">resume.augustoamaral.com ↗</a>.
       </p>
     </div>
   </section>
@@ -76,9 +84,16 @@ const chapters = [
             <p class="ch-body">{ch.body}</p>
           </div>
           <div class="chapter-right">
-            <div class="ch-photo-placeholder">
-              <span class="ch-photo-label mono-label">{ch.fig}</span>
-            </div>
+            {ch.photo ? (
+              <figure class="ch-photo">
+                <Image src={ch.photo} alt={`${ch.company} — foto do time`} width={800} class="ch-photo-img" />
+                <figcaption class="ch-photo-label mono-label">{ch.fig}</figcaption>
+              </figure>
+            ) : (
+              <div class="ch-photo-placeholder">
+                <span class="ch-photo-label mono-label">{ch.fig}</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -193,6 +208,20 @@ const chapters = [
     display: flex;
     align-items: flex-end;
     padding: 16px;
+  }
+
+  .ch-photo {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ch-photo-img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    display: block;
   }
 
   .ch-photo-label {

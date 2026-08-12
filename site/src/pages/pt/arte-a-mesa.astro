@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslation } from '../../i18n/ui';
+import { Image } from 'astro:assets';
+import catalogShot from '../../assets/arte-a-mesa/catalog.png';
+import rentalsShot from '../../assets/arte-a-mesa/rentals.png';
+import newRentalShot from '../../assets/arte-a-mesa/new-rental.png';
+import clientShot from '../../assets/arte-a-mesa/client-detail.png';
+
+const locale = 'pt' as const;
+const pathname = '/pt/arte-a-mesa';
+const t = useTranslation(locale);
+
+const shots = [
+  { img: catalogShot, alt: 'Catálogo com estoque por item', caption: 'FIG. 1 — CATÁLOGO' },
+  { img: rentalsShot, alt: 'Lista de locações', caption: 'FIG. 2 — LOCAÇÕES' },
+  { img: newRentalShot, alt: 'Formulário de nova locação', caption: 'FIG. 3 — NOVA LOCAÇÃO' },
+  { img: clientShot, alt: 'Visão de detalhe do cliente', caption: 'FIG. 4 — CLIENTE' },
+];
+---
+
+<BaseLayout
+  title="Arte à Mesa — Augusto Amaral"
+  description="Gestão de locações para uma loja de louças, em produção. Nasceu como benchmark de LLMs; a loja roda o build do Opus."
+  locale={locale}
+  pathname={pathname}
+  activeNav="arteamesa"
+>
+
+  <section class="atm-top section-border">
+    <div class="container">
+      <p class="page-label mono-label">{t('arteamesa.label')}</p>
+      <h1 class="atm-h1">Arte à Mesa.</h1>
+      <p class="atm-tagline">
+        Gestão de locações para uma loja de aluguel de louças — clientes, catálogo, locações. <em>Rodando em produção, na loja.</em>
+      </p>
+    </div>
+  </section>
+
+  <section class="atm-what section-border">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <h2 class="sub-h2">O que é</h2>
+          <p class="sub-body">
+            Uma loja de aluguel de louças e artigos para festa precisava parar de gerenciar locações no papel: quais itens existem, quais estão fora, com quem estão, quando voltam. Arte à Mesa é o sistema que a loja usa — catálogo com estoque por item, clientes, locações com períodos e devoluções. Roda na máquina da própria loja, acessível de um tablet no balcão.
+          </p>
+        </div>
+        <div>
+          <h2 class="sub-h2">Como é feito</h2>
+          <p class="sub-body">
+            Monorepo TypeScript: um core de domínio puro, uma API Hono com Prisma sobre SQLite, e um front React (Vite, Radix, TanStack Query). Pequeno de propósito — uma loja não precisa de microsserviços, precisa de software que funciona todo dia.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="atm-shots section-border">
+    <div class="container">
+      <h2 class="data-title">Na prática</h2>
+      <div class="shots-grid">
+        {shots.map((s) => (
+          <figure class="shot">
+            <Image src={s.img} alt={s.alt} width={900} class="shot-img" />
+            <figcaption class="mono-label">{s.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="atm-origin section-border">
+    <div class="container">
+      <h2 class="data-title">Nasceu como benchmark</h2>
+      <p class="sub-body">
+        Esse código começou como experimento: a mesma spec e os mesmos três planos de implementação, executados de forma independente por vários modelos — Claude Opus como referência, mais GLM, Qwen e Gemma — um branch e um draft PR por modelo, tudo agent-driven. A loja roda o build do Opus. O experimento virou parte de como eu avalio modelos pra trabalho de verdade; o workflow por trás está em <a href="/pt/shelf/claude" class="inline-link">como eu uso Claude</a>.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .atm-top {
+    padding: 80px 0;
+  }
+
+  .page-label {
+    margin: 0 0 24px 0;
+    letter-spacing: 0.12em;
+  }
+
+  .atm-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(4rem, 8vw, 7rem);
+    font-weight: 400;
+    line-height: 0.95;
+    margin: 0 0 var(--space-5) 0;
+    letter-spacing: -0.02em;
+  }
+
+  .atm-tagline {
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 640px;
+    color: var(--fg-muted);
+  }
+
+  .atm-tagline em {
+    font-style: italic;
+    color: var(--fg-primary);
+  }
+
+  .atm-what {
+    padding: 80px 0;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+
+  .sub-h2 {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .sub-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  .inline-link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--fg-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .inline-link:hover {
+    color: var(--fg-primary);
+    border-color: var(--fg-primary);
+  }
+
+  .atm-shots { padding: 80px 0; }
+  .data-title { font-family: var(--font-serif); font-size: 2rem; font-weight: 400; margin: 0; }
+  .shots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+    gap: 32px;
+    margin-top: 32px;
+  }
+  .shot { margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .shot-img { width: 100%; height: auto; display: block; border: 1px solid var(--border); }
+
+  .atm-origin {
+    padding: 80px 0;
+  }
+
+  .atm-origin .data-title {
+    margin: 0 0 32px 0;
+  }
+
+  .atm-origin .sub-body {
+    max-width: 720px;
+  }
+
+  @media (max-width: 720px) {
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+</style>
