@@ -44,6 +44,7 @@ export const ui = {
     'liz.howTitle': 'How it works',
     'liz.dataTitle': 'What it collects, and why',
     'liz.statusBadge': 'IN PRODUCTION',
+    'liz.ctaLink': 'Request beta access ↗', // removed in Task 6
     'liz.privacyLink': 'full privacy policy →',
     'principles.label': 'VI — PRINCIPLES',
     'principles.h1': 'Working on it. Come back later.',
@@ -107,6 +108,7 @@ export const ui = {
     'liz.howTitle': 'Como funciona',
     'liz.dataTitle': 'O que coleta, e por quê',
     'liz.statusBadge': 'EM PRODUÇÃO',
+    'liz.ctaLink': 'Solicitar acesso beta ↗', // removed in Task 6
     'liz.privacyLink': 'política de privacidade completa →',
     'principles.label': 'VI — PRINCÍPIOS',
     'principles.h1': 'Trabalhando nisso. Volte mais tarde.',
