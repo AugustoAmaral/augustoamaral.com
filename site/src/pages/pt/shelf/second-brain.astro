@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const locale = 'pt' as const;
+const pathname = '/pt/shelf/second-brain';
+---
+
+<BaseLayout
+  title="Segundo cérebro — Augusto Amaral"
+  description="Dois vaults escritos por agentes, para agentes. Capture-first, autoconsolidação noturna, e um gêmeo de trabalho guia-não-executor."
+  locale={locale}
+  pathname={pathname}
+  activeNav="shelf"
+>
+
+  <section class="sb-top section-border">
+    <div class="container">
+      <p class="page-label mono-label">BIBLIOTECA / SISTEMA II</p>
+      <h1 class="page-h1">Um vault escrito <em>por agentes, para agentes</em>.</h1>
+    </div>
+  </section>
+
+  <section class="sb-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">A tese</h2>
+      <p class="sub-body">
+        Eu não leio minhas notas. Eu converso com um agente que lê e escreve por mim. Toda decisão de formato do vault otimiza retrieval por agente, nunca leitura linear humana — essa única inversão remodela todo o resto.
+      </p>
+    </div>
+  </section>
+
+  <section class="sb-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">As regras com nome</h2>
+      <div class="rule">
+        <p class="mono-label">CAPTURE-FIRST</p>
+        <p class="sub-body">Capturar custa segundos e nunca pergunta onde arquivar. Rotear é trabalho da rotina noturna, não meu. O vault que me fazia decidir na hora da captura é o vault que morreu.</p>
+      </div>
+      <div class="rule">
+        <p class="mono-label">VISÃO HUMANA É VERBO</p>
+        <p class="sub-body">Briefings e relatórios são gerados sob demanda e jogados fora. Resumo guardado é cópia, e cópia apodrece.</p>
+      </div>
+      <div class="rule">
+        <p class="mono-label">ESTADO VIVO MORA NUM LUGAR SÓ</p>
+        <p class="sub-body">Cada frente da vida tem exatamente um arquivo de status: onde parou, próximo passo, decisões recentes, bloqueios. Lição paga em limpeza de estado duplicado.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sb-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">Ele roda sozinho de madrugada</h2>
+      <p class="sub-body">
+        Uma instância always-on do Claude Code vive num servidor pequeno: uma unit do systemd mantém um loop de respawn vivo, remote control me deixa capturar do celular, e um cron noturno drena o inbox — roteando capturas pra wiki, lintando o grafo, registrando o que fez, commitando. Eu acordo com o vault consolidado e uma trilha de auditoria.
+      </p>
+    </div>
+  </section>
+
+  <section class="sb-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">O gêmeo de trabalho</h2>
+      <p class="sub-body">
+        Trabalho tem um vault próprio, estruturado em PARA, guiado por um ciclo de três skills: um radar matinal que coleta tudo em paralelo e compara com o snapshot de ontem; um montador de contexto que prepara briefings de uma unidade de trabalho — ou os entrega como notas que qualquer agente consome, com validade renovada pelo toque; e um journal que roteia o que aconteceu e marca evidências de impacto pra 1:1s e ciclos de review. O princípio que governa: o agente é guia, não executor — ele diz o que eu posso fazer, nunca se oferece pra fazer por mim.
+      </p>
+    </div>
+  </section>
+
+  <section class="sb-section section-border">
+    <div class="container">
+      <h2 class="sub-h2">Evolução, com honestidade</h2>
+      <p class="sub-body">
+        Vault um: uma pasta plana de notas. Abandonado. Vault dois: aprendeu com isso — estrutura, mas o estado ainda duplicava, e estado duplicado apodrece. O vault três é o atual, LLM-first desde o dia zero. O sistema também melhora a si mesmo: fricção é registrada em silêncio, e periodicamente uma skill lê o próprio feedback e propõe edits na própria spec — um humano revisa e commita.
+      </p>
+    </div>
+  </section>
+
+  <section class="sb-section section-border">
+    <div class="container">
+      <div class="flow">
+        <span class="flow-step mono-label">CAPTURAR</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step mono-label">CONSOLIDAR (MADRUGADA)</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step mono-label">TRABALHAR</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step mono-label">RECUPERAR SOB DEMANDA</span>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .sb-top {
+    padding: 80px 0;
+  }
+
+  .page-label {
+    margin: 0 0 24px 0;
+    letter-spacing: 0.12em;
+  }
+
+  .page-h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .page-h1 em {
+    font-style: italic;
+    color: var(--fg-muted);
+  }
+
+  .sb-section {
+    padding: 80px 0;
+  }
+
+  .sub-h2 {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .sub-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0 0 var(--space-4) 0;
+    max-width: 720px;
+  }
+
+  .sub-body:last-child {
+    margin-bottom: 0;
+  }
+
+  .rule {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .rule:last-child {
+    margin-bottom: 0;
+  }
+
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    padding: 32px 0;
+  }
+
+  .flow-step {
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    letter-spacing: 0.1em;
+  }
+
+  .flow-arrow {
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+  }
+</style>
