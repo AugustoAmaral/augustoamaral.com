@@ -26,6 +26,13 @@
         margin-bottom: 20px;
       }
 
+      .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+      }
+
       h1 {
         color: #2c3e50;
         font-size: 28px;
@@ -36,6 +43,30 @@
         color: #666;
         font-size: 16px;
         font-weight: 500;
+      }
+
+      .cert-badge {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: #555;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .cert-badge img {
+        display: block;
+      }
+
+      .cert-badge strong {
+        color: #2c3e50;
+        font-size: 13px;
+      }
+
+      .cert-badge .verify {
+        color: #2c3e50;
+        text-decoration: underline;
       }
 
       .contact-info {
@@ -64,7 +95,7 @@
       h2 {
         color: #2c3e50;
         font-size: 18px;
-        margin-top: 25px;
+        margin-top: 20px;
         margin-bottom: 10px;
         border-bottom: 1px solid #ddd;
         padding-bottom: 5px;
@@ -109,31 +140,18 @@
       }
 
       li {
-        margin-bottom: 4px;
+        margin-bottom: 3px;
         font-size: 14px;
         line-height: 1.5;
       }
 
-      .skills-section {
-        display: flex;
-        gap: 30px;
-        flex-wrap: wrap;
+      .skills {
+        list-style: none;
+        margin-left: 0;
       }
 
-      .skill-category {
-        flex: 1;
-        min-width: 200px;
-      }
-
-      .skill-category strong {
+      .skills strong {
         color: #2c3e50;
-        display: block;
-        margin-bottom: 3px;
-      }
-
-      .skill-category p {
-        font-size: 14px;
-        color: #555;
       }
 
       .education-item {
@@ -148,12 +166,6 @@
       .education-details {
         font-size: 14px;
         color: #666;
-      }
-
-      .languages {
-        display: flex;
-        gap: 20px;
-        font-size: 14px;
       }
 
       @media print {
@@ -177,8 +189,27 @@
   </head>
   <body>
     <header>
-      <h1>Augusto Amaral</h1>
-      <div class="subtitle">Senior Software Engineer</div>
+      <div class="header-top">
+        <div>
+          <h1>Augusto Amaral</h1>
+          <div class="subtitle">Senior Software Engineer · Full-stack &amp; AI</div>
+        </div>
+        <a
+          class="cert-badge"
+          href="https://www.credly.com/badges/3b538f34-538a-48c4-aafa-0eee67cb186e"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><img
+            src="claude-certified-developer-foundations.png"
+            alt="Claude Certified Developer – Foundations badge"
+            width="60"
+            height="60"
+          /><span
+            ><strong>Claude Certified Developer</strong><br />Foundations ·
+            Anthropic, 2026<br /><span class="verify">Verify on Credly</span></span
+          ></a
+        >
+      </div>
       <div class="contact-info">
         <span
           >📧
@@ -205,19 +236,29 @@
             >github.com/AugustoAmaral</a
           ></span
         >
-        <span>📍 Campos dos Goytacazes, RJ, Brazil</span>
+        <span
+          >🌐
+          <a
+            href="https://augustoamaral.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            >augustoamaral.com</a
+          ></span
+        >
+        <span>📍 Brazil (remote)</span>
       </div>
     </header>
 
     <h2>Professional Summary</h2>
     <p style="font-size: 14px; margin-bottom: 15px">
-      Senior Software Engineer with 7+ years of experience building scalable
-      enterprise solutions, currently shipping revenue-driving telehealth
-      features at Spring Health. Expert in React, TypeScript, Ruby on Rails, and
-      Python with a proven track record owning features end-to-end and leading
-      frontend teams. Demonstrated impact: +57% engagement lift through A/B
-      experimentation, 80% cost reduction in testing infrastructure, and
-      zero-downtime product launches.
+      Senior Software Engineer with 7+ years shipping production software for
+      companies in the US, Norway, and Italy, currently building
+      revenue-driving telehealth features at Spring Health. Full-stack across
+      React/TypeScript, Ruby on Rails, and Python; former frontend team lead.
+      AI is part of how I build: Anthropic-certified Claude developer, running
+      my own LLM-powered product in production. Impact: ~$1M projected annual
+      revenue from a solo-built feature, +57% engagement lift through A/B
+      experimentation, and 80% lower testing infrastructure costs.
     </p>
 
     <h2>Professional Experience</h2>
@@ -233,7 +274,7 @@
       <ul>
         <li>
           Own end-to-end delivery of provider scheduling features on a
-          telehealth platform — scoped directly with product and built solo
+          telehealth platform, scoped directly with product and built solo
           across React/TypeScript frontend and Ruby on Rails/GraphQL backend;
           live in production for 1,000+ providers with projected ~$1M
           incremental annual revenue
@@ -254,12 +295,8 @@
           open bug board to single digits
         </li>
         <li>
-          Remediated a CVSS 8.6 CVE end-to-end beyond team scope, from discovery
+          Remediated a CVSS 8.6 CVE end to end beyond team scope, from discovery
           to production upgrade
-        </li>
-        <li>
-          Merged 40+ PRs in the first 90 days across frontend apps, shared
-          libraries, and the Rails backend
         </li>
       </ul>
     </div>
@@ -267,35 +304,31 @@
     <div class="job">
       <div class="job-header">
         <div>
-          <span class="job-title">Senior Software Engineer & Team Lead</span>
+          <span class="job-title">Senior Software Engineer &amp; Team Lead</span>
           <span class="company">Three60 Energy / Maiella, Norway/Italy</span>
         </div>
         <span class="date">February 2024 - November 2025</span>
       </div>
       <ul>
         <li>
-          Led a 3 person frontend team developing BI solutions for oil & gas
-          industry, owning architecture decisions and delivery strategy
+          Led a 3-person frontend team developing BI solutions for the oil &amp;
+          gas industry, owning architecture decisions and delivery strategy
         </li>
         <li>
-          Built design system and component library with Storybook achieving
-          90%+ test coverage across multiple products
+          Built the design system and component library in Storybook, with 90%+
+          test coverage across multiple products
         </li>
         <li>
-          Reduced infrastructure costs by 80% replacing Chromatic with custom
-          Playwright based visual regression testing solution
+          Cut testing infrastructure costs by 80% by replacing Chromatic with a
+          custom Playwright-based visual regression solution
         </li>
         <li>
-          Architected end-to-end type safety using Elysia + Eden Treaty,
-          eliminating API contract bugs across monorepo
+          Architected end-to-end type safety with Elysia + Eden Treaty,
+          eliminating API contract bugs across the monorepo
         </li>
         <li>
-          Built data visualization dashboards using React, TypeScript, and
-          ECharts; contributed Python backend services
-        </li>
-        <li>
-          Developed CI/CD pipelines with GitHub Actions and Azure DevOps with
-          intelligent caching
+          Built React/TypeScript/ECharts dashboards and Python backend services;
+          CI/CD on GitHub Actions and Azure DevOps
         </li>
       </ul>
     </div>
@@ -303,31 +336,28 @@
     <div class="job">
       <div class="job-header">
         <div>
-          <span class="job-title">Mid Software Engineer</span>
+          <span class="job-title">Software Engineer (Consultant)</span>
           <span class="company">Zoolatech / Procore, USA</span>
         </div>
         <span class="date">July 2022 - February 2024</span>
       </div>
       <ul>
         <li>
-          Consultant for Procore's 20-year-old Rails/React enterprise
-          construction management platform
+          Consultant on Procore's 20-year-old Rails/React enterprise
+          construction management platform, delivering critical features for
+          the budget management module
         </li>
         <li>
-          Raised test coverage by 37%, cut module load time by 23%, and
-          delivered critical features for the budget management module
+          Raised test coverage by 37% and cut module load time by 23% through
+          code splitting
         </li>
         <li>
-          Led cross-team data exposure initiatives; integrated DBT for Reports
-          team
+          Led cross-team data exposure initiatives; integrated DBT for the
+          Reports team
         </li>
         <li>
-          Won internal hackathon with landing page solution reducing user
+          Won an internal hackathon with a landing page that reduced user
           navigation by 30%
-        </li>
-        <li>
-          Partnered with PMs and designers throughout feature lifecycle from
-          requirements to delivery
         </li>
       </ul>
     </div>
@@ -335,23 +365,21 @@
     <div class="job">
       <div class="job-header">
         <div>
-          <span class="job-title">CTO & Co-founder</span>
+          <span class="job-title">CTO &amp; Co-founder</span>
           <span class="company">Avaliei!, Brazil</span>
         </div>
         <span class="date">May 2021 - July 2022</span>
       </div>
       <ul>
         <li>
-          Technical co-founder after being a finalist in Hacking.Rio 2019 (700+
-          participants); transformed concept into venture-backed startup
+          Technical co-founder of a startup born from a Hacking.Rio 2019
+          finalist project (700+ participants); turned the concept into a
+          venture-backed startup in partnership with Vibra Energia S.A.
         </li>
         <li>
-          Architected full-stack solutions in partnership with Vibra Energia
-          S.A.
-        </li>
-        <li>
-          Achieved low operational costs through serverless architecture and
-          automated pipelines
+          Architected and built the full-stack product from zero, keeping
+          running costs low with serverless architecture and automated
+          pipelines
         </li>
       </ul>
     </div>
@@ -359,71 +387,82 @@
     <div class="job">
       <div class="job-header">
         <div>
-          <span class="job-title">Junior Full-stack Developer</span>
+          <span class="job-title">Full-stack Developer</span>
           <span class="company">Odda Digital System, Norway</span>
         </div>
         <span class="date">January 2019 - July 2022</span>
       </div>
       <ul>
+        <li>Promoted from frontend to full-stack within 6 months</li>
         <li>
-          Built GraphQL API gateway unifying multiple backend services;
-          developed microservices with Node.js, React, Ruby on Rails
+          Built a GraphQL API gateway unifying multiple backend services;
+          developed microservices with Node.js, React, and Ruby on Rails
         </li>
         <li>
-          Architected event-driven automation using Azure Service Bus, replacing
+          Architected event-driven automation with Azure Service Bus, replacing
           manual ERP data entry
         </li>
-        <li>Promoted from frontend to full-stack within 6 months</li>
       </ul>
     </div>
 
+    <h2>Selected Projects</h2>
+    <ul>
+      <li>
+        <strong>Liz, an AI receptionist on WhatsApp</strong> (founder, in
+        production since May 2026): answers a medical practice's patients,
+        transcribes voice notes, and books appointments against a real calendar;
+        105 appointments booked in its first 6 weeks, many after hours. Bun,
+        Hono, PostgreSQL, Claude, Whisper
+      </li>
+      <li>
+        <strong>Hardware network offload on OpenWrt</strong> (2026, AI-assisted
+        embedded work): brought Qualcomm NSS offload to a Xiaomi AX6000 on Linux
+        6.18, root-caused and patched a DMA ring bug in the Ethernet driver, and
+        contributed the fix to the community NSS fork; real internet throughput
+        went from 37 to 800 Mbps
+      </li>
+    </ul>
+
     <h2>Technical Skills</h2>
-    <div class="skills-section">
-      <div class="skill-category">
-        <strong>Languages & Frameworks:</strong>
-        <p>
-          TypeScript, React.js, Ruby on Rails, Python, Node.js, SQL, GraphQL
-        </p>
-      </div>
-      <div class="skill-category">
-        <strong>Tools & Infrastructure:</strong>
-        <p>
-          Storybook, Playwright, Jest, Cypress, Docker, Git, CI/CD, AWS, Azure
-          DevOps, PostgreSQL, MongoDB, Redux, Datadog, Mixpanel, LaunchDarkly,
-          Snowflake
-        </p>
-      </div>
-    </div>
+    <ul class="skills">
+      <li>
+        <strong>Languages &amp; Frameworks:</strong> TypeScript, React, Ruby on
+        Rails, Python, Node.js, Bun, GraphQL, SQL
+      </li>
+      <li>
+        <strong>AI &amp; LLM:</strong> Claude API, tool use and MCP servers,
+        prompt and context engineering, guardrails; agentic development with
+        Claude Code and Pi, multi-agent orchestration; local and open-weight
+        models (GLM, Qwen, Gemma)
+      </li>
+      <li>
+        <strong>Testing &amp; Quality:</strong> Storybook, Playwright, Jest,
+        Cypress
+      </li>
+      <li>
+        <strong>Infrastructure &amp; Data:</strong> Docker, GitHub Actions, Azure
+        DevOps, AWS, Cloudflare, PostgreSQL, MongoDB, Snowflake, Datadog,
+        Mixpanel, LaunchDarkly
+      </li>
+      <li>
+        <strong>Languages:</strong> Portuguese (native), English (fluent),
+        Spanish (advanced)
+      </li>
+    </ul>
 
     <h2>Education</h2>
     <div class="education-item">
       <div class="education-title">Bachelor of Computer Science</div>
       <div class="education-details">
-        UENF - Universidade Estadual Norte Fluminense, Brazil | 2018 - 2025
+        UENF - Universidade Estadual Norte Fluminense, Brazil | 2018 - 2025 |
+        Thesis: comparative analysis of automatic keyword extraction algorithms
+        using NLP techniques
       </div>
     </div>
-
-    <h2>Notable Achievements</h2>
-    <ul style="font-size: 14px">
-      <li>
-        <strong>Hacking.Rio 2019 finalist:</strong> Competed against 700+
-        participants; led to founding Avaliei! with Vibra Energia S.A.
-      </li>
-      <li>
-        <strong>Procore Hackathon Winner:</strong> Landing page solution
-        reducing user navigation by 30%
-      </li>
-      <li>
-        <strong>Stanford Code in Place 2020:</strong> Selected for competitive
-        global programming course, final project featured in official gallery
-      </li>
-    </ul>
-
-    <h2>Languages</h2>
-    <div class="languages">
-      <span><strong>Portuguese:</strong> Native</span>
-      <span><strong>English:</strong> Fluent</span>
-      <span><strong>Spanish:</strong> Advanced</span>
+    <div class="education-item education-details">
+      <strong class="education-title">Stanford Code in Place 2020:</strong>
+      selected for Stanford's global programming course; final project featured
+      in the official gallery
     </div>
   </body>
 </html>
