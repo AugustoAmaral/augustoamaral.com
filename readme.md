@@ -22,11 +22,11 @@ If you're curious about the performance gains, I wrote about it [in this article
 
 ### 🏗️ Modernizing Legacy Code at Procore (via Zoolatech)
 
-Worked on Procore's flagship construction management platform - a 20-year-old Rails and React codebase that's seen things. Delivered critical features for the budget management module, improved module load time by 40% through code splitting, and yes, found `// TODO: fix this later` comments from 2008 still waiting patiently.
+Worked on Procore's flagship construction management platform - a 20-year-old Rails and React codebase that's seen things. Delivered critical features for the budget management module, raised test coverage by 37%, cut module load time by 23% through code splitting, and yes, found `// TODO: fix this later` comments from 2008 still waiting patiently.
 
 ### 🚀 From Hackathon to Startup (Avaliei!)
 
-Won Hacking.Rio 2019 competing against 700+ participants, which led to founding Avaliei! with Vibra Energia S.A. as our partner. Built everything from the ground up - the tech stack, CI/CD pipelines, serverless architecture. The startup didn't work out in the end, but the experience of being a technical co-founder and building everything from zero was invaluable.
+Reached the finals of Hacking.Rio 2019 among 700+ participants, which led to founding Avaliei! with Vibra Energia S.A. as our partner. Built everything from the ground up - the tech stack, CI/CD pipelines, serverless architecture. The startup didn't work out in the end, but the experience of being a technical co-founder and building everything from zero was invaluable.
 
 ## Technologies I work with today
 
@@ -93,7 +93,7 @@ A community project - a progress tracking tool for Ragnarok Mobile Classic with 
 **Bachelor of Computer Science** - UENF, Brazil (2025)  
 Thesis: Comparative Analysis of Automatic Keyword Extraction Algorithms Using NLP Techniques
 
-**Hacking.Rio 2019** - Cluster winner (700+ participants)  
+**Hacking.Rio 2019** - Finalist (700+ participants)  
 **Stanford Code in Place 2020** - Final project featured in official gallery
 
 ## Languages

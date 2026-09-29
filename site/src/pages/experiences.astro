@@ -2,8 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { useTranslation } from '../i18n/ui';
 import { Image } from 'astro:assets';
-import zoolatechPhoto from '../assets/experiences/zoolatech.jpg';
+import springPhoto from '../assets/experiences/spring.png';
 import three60Photo from '../assets/experiences/three60.jpg';
+import zoolatechPhoto from '../assets/experiences/zoolatech.jpg';
+import avalieiPhoto from '../assets/experiences/avaliei.jpg';
 import odsPhoto from '../assets/experiences/ods.jpg';
 
 const locale = 'en' as const;
@@ -13,46 +15,60 @@ const t = useTranslation(locale);
 const chapters = [
   {
     num: 'I',
-    years: '2024 — now',
+    years: '2026 — now',
     company: 'Spring Health',
     role: 'Senior Software Engineer',
-    body: 'Mental health, software-shaped. Building care team experience surfaces in React/TypeScript, with the weight that comes from working on something that matters to the person on the other side of the screen.',
-    fig: 'FIG. I.1 — PHOTO PENDING',
-    photo: null,
+    body: 'Mental health care, at scale. I own provider scheduling features end to end, scoped directly with product and built across React/TypeScript and Rails/GraphQL, now live for 1,000+ providers. Along the way: A/B experiments (one drove a +57% lift in provider engagement) and on-call for the in-house video platform.',
+    fig: 'FIG. I.1 — SPRING HEALTH',
+    photo: springPhoto,
+    alt: 'Spring Health logo',
   },
   {
     num: 'II',
-    years: '2021 — 2024',
-    company: 'Procore (via Zoolatech)',
-    role: 'Senior Software Engineer',
-    body: 'Construction software, used by people who actually wear hard hats. Where I learned how a design system survives — or doesn\'t — contact with a real org.',
-    fig: 'FIG. II.1 — ZOOLATECH TEAM',
-    photo: zoolatechPhoto,
+    years: '2024 — 2025',
+    company: 'Three60 Energy / Maiella',
+    role: 'Senior Software Engineer & Team Lead',
+    body: 'BI dashboards for the oil & gas industry, with a team split between Norway and Italy. I led a three-person frontend team, built the design system in Storybook, wired end-to-end type safety with Elysia and Eden Treaty, and replaced Chromatic with a Playwright visual testing setup that cut that bill by 80%.',
+    fig: 'FIG. II.1 — THREE60 TEAM',
+    photo: three60Photo,
+    alt: 'Three60 Energy team photo',
   },
   {
     num: 'III',
-    years: '2020 — 2021',
-    company: 'Three60',
-    role: 'Software Engineer',
-    body: 'Smaller team, more ownership, more chances to ship something and watch it break in production. The lesson: most of building software is the conversation around it, occasionally interrupted by typing.',
-    fig: 'FIG. III.1 — 2020',
-    photo: three60Photo,
+    years: '2022 — 2024',
+    company: 'Procore (via Zoolatech)',
+    role: 'Software Engineer (Consultant)',
+    body: 'Construction software, used by people who actually wear hard hats. As a consultant through Zoolatech, I worked on a 20-year-old Rails and React platform: raised test coverage by 37%, cut module load time by 23% with code splitting, shipped budget-management features, and won an internal hackathon.',
+    fig: 'FIG. III.1 — ZOOLATECH TEAM',
+    photo: zoolatechPhoto,
+    alt: 'Zoolatech team photo',
   },
   {
     num: 'IV',
-    years: '2018 — 2020',
-    company: 'ODS',
-    role: 'Junior → Mid Software Engineer',
-    body: 'Where I learned what good code review actually looks like — not as a gate, but as a conversation between two people about how a system should behave.',
-    fig: 'FIG. IV.1 — 2020',
+    years: '2021 — 2022',
+    company: 'Avaliei!',
+    role: 'CTO & Co-founder',
+    body: 'It started as a Hacking.Rio 2019 project that made the finals among 700+ participants. I became technical co-founder and built the product from zero, in partnership with Vibra Energia: full-stack architecture, serverless infrastructure, and automated pipelines on a near-zero budget. The startup didn\'t last, but owning a product end to end started here.',
+    fig: 'FIG. IV.1 — AVALIEI!',
+    photo: avalieiPhoto,
+    alt: 'Group photo from the Avaliei! days',
+  },
+  {
+    num: 'V',
+    years: '2019 — 2022',
+    company: 'ODS (Odda Digital System)',
+    role: 'Frontend → Full-stack Developer',
+    body: 'My first engineering job, remote, for a Norwegian company. I started on the frontend and moved to full stack within six months: a GraphQL gateway over several backend services, Node and Rails microservices, and an Azure Service Bus automation that replaced manual ERP data entry.',
+    fig: 'FIG. V.1 — ODS TEAM',
     photo: odsPhoto,
+    alt: 'ODS team photo',
   },
 ];
 ---
 
 <BaseLayout
   title="Experiences — Augusto Amaral"
-  description="Four jobs, seven years, told as a story. From ODS to Spring Health."
+  description="Five chapters, seven years, told as a story. From ODS to Spring Health."
   locale={locale}
   pathname={pathname}
   activeNav="experiences"
@@ -62,7 +78,7 @@ const chapters = [
     <div class="container">
       <p class="page-label mono-label">{t('experiences.label')}</p>
       <h1 class="page-h1">
-        Four jobs, seven years, told <em>as a story</em>.
+        Five chapters, seven years, told <em>as a story</em>.
       </h1>
       <p class="page-intro">
         {t('experiences.intro')} <a href="https://resume.augustoamaral.com" class="inline-link" target="_blank" rel="noopener">resume.augustoamaral.com ↗</a>.
@@ -84,16 +100,10 @@ const chapters = [
             <p class="ch-body">{ch.body}</p>
           </div>
           <div class="chapter-right">
-            {ch.photo ? (
-              <figure class="ch-photo">
-                <Image src={ch.photo} alt={`${ch.company} — team photo`} width={800} class="ch-photo-img" />
-                <figcaption class="ch-photo-label mono-label">{ch.fig}</figcaption>
-              </figure>
-            ) : (
-              <div class="ch-photo-placeholder">
-                <span class="ch-photo-label mono-label">{ch.fig}</span>
-              </div>
-            )}
+            <figure class="ch-photo">
+              <Image src={ch.photo} alt={ch.alt} width={800} class="ch-photo-img" />
+              <figcaption class="ch-photo-label mono-label">{ch.fig}</figcaption>
+            </figure>
           </div>
         </div>
       </div>
@@ -198,18 +208,6 @@ const chapters = [
     display: flex;
     flex-direction: column;
     gap: 12px;
-  }
-
-  .ch-photo-placeholder {
-    height: 340px;
-    background: repeating-linear-gradient(
-      135deg,
-      var(--bg-elevated) 0 8px,
-      var(--bg-base) 8px 16px
-    );
-    display: flex;
-    align-items: flex-end;
-    padding: 16px;
   }
 
   .ch-photo {

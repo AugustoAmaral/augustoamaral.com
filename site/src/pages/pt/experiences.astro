@@ -2,8 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { useTranslation } from '../../i18n/ui';
 import { Image } from 'astro:assets';
-import zoolatechPhoto from '../../assets/experiences/zoolatech.jpg';
+import springPhoto from '../../assets/experiences/spring.png';
 import three60Photo from '../../assets/experiences/three60.jpg';
+import zoolatechPhoto from '../../assets/experiences/zoolatech.jpg';
+import avalieiPhoto from '../../assets/experiences/avaliei.jpg';
 import odsPhoto from '../../assets/experiences/ods.jpg';
 
 const locale = 'pt' as const;
@@ -13,46 +15,60 @@ const t = useTranslation(locale);
 const chapters = [
   {
     num: 'I',
-    years: '2024 — agora',
+    years: '2026 — agora',
     company: 'Spring Health',
     role: 'Senior Software Engineer',
-    body: 'Saúde mental, moldada em software. Construindo interfaces para a equipe de cuidado em React/TypeScript, com o peso de trabalhar em algo que importa para a pessoa do outro lado da tela.',
-    fig: 'FIG. I.1 — FOTO EM BREVE',
-    photo: null,
+    body: 'Cuidado com saúde mental, em escala. Sou dono de ponta a ponta das funcionalidades de agendamento de profissionais de saúde, definidas junto com o time de produto e construídas em React/TypeScript e Rails/GraphQL, hoje em produção para mais de 1.000 profissionais. No caminho: experimentos A/B (um deles gerou +57% de aumento no engajamento dos profissionais) e plantão para a plataforma de videochamada própria da empresa.',
+    fig: 'FIG. I.1 — SPRING HEALTH',
+    photo: springPhoto,
+    alt: 'Logo da Spring Health',
   },
   {
     num: 'II',
-    years: '2021 — 2024',
-    company: 'Procore (via Zoolatech)',
-    role: 'Senior Software Engineer',
-    body: 'Software de construção civil, usado por pessoas que realmente usam capacete. Onde aprendi como um sistema de design sobrevive — ou não — ao contato com uma org de verdade.',
-    fig: 'FIG. II.1 — ZOOLATECH TEAM',
-    photo: zoolatechPhoto,
+    years: '2024 — 2025',
+    company: 'Three60 Energy / Maiella',
+    role: 'Senior Software Engineer & Team Lead',
+    body: 'Dashboards de BI para a indústria de óleo e gás, com um time dividido entre Noruega e Itália. Liderei um time de três pessoas no frontend, construí o design system no Storybook, montei tipagem de ponta a ponta com Elysia e Eden Treaty, e substituí o Chromatic por uma configuração de testes visuais em Playwright que cortou esse custo em 80%.',
+    fig: 'FIG. II.1 — THREE60 TEAM',
+    photo: three60Photo,
+    alt: 'Foto do time da Three60 Energy',
   },
   {
     num: 'III',
-    years: '2020 — 2021',
-    company: 'Three60',
-    role: 'Software Engineer',
-    body: 'Time menor, mais autonomia, mais chances de entregar algo e ver quebrando em produção. A lição: a maior parte de construir software é a conversa em torno disso, ocasionalmente interrompida por digitação.',
-    fig: 'FIG. III.1 — 2020',
-    photo: three60Photo,
+    years: '2022 — 2024',
+    company: 'Procore (via Zoolatech)',
+    role: 'Software Engineer (Consultor)',
+    body: 'Software de construção civil, usado por gente que realmente usa capacete. Como consultor via Zoolatech, trabalhei numa plataforma Rails e React de 20 anos: aumentei a cobertura de testes em 37%, reduzi o tempo de carregamento de módulos em 23% com code splitting, entreguei funcionalidades de gestão de orçamento e venci um hackathon interno.',
+    fig: 'FIG. III.1 — ZOOLATECH TEAM',
+    photo: zoolatechPhoto,
+    alt: 'Foto do time da Zoolatech',
   },
   {
     num: 'IV',
-    years: '2018 — 2020',
-    company: 'ODS',
-    role: 'Junior → Mid Software Engineer',
-    body: 'Onde aprendi como é uma boa revisão de código de verdade — não como um portão, mas como uma conversa entre duas pessoas sobre como um sistema deveria se comportar.',
-    fig: 'FIG. IV.1 — 2020',
+    years: '2021 — 2022',
+    company: 'Avaliei!',
+    role: 'CTO & Co-fundador',
+    body: 'Começou como um projeto do Hacking.Rio 2019 que ficou entre os finalistas em meio a mais de 700 participantes. Me tornei cofundador técnico e construí o produto do zero, em parceria com a Vibra Energia: arquitetura full-stack, infraestrutura serverless e pipelines automatizados com um orçamento quase zero. A startup não deu certo, mas foi aí que comecei a ser dono de um produto de ponta a ponta.',
+    fig: 'FIG. IV.1 — AVALIEI!',
+    photo: avalieiPhoto,
+    alt: 'Foto em grupo da época do Avaliei!',
+  },
+  {
+    num: 'V',
+    years: '2019 — 2022',
+    company: 'ODS (Odda Digital System)',
+    role: 'Frontend → Full-stack Developer',
+    body: 'Meu primeiro emprego como engenheiro, remoto, para uma empresa norueguesa. Comecei no frontend e migrei para full stack em seis meses: um gateway GraphQL sobre vários serviços de backend, microsserviços em Node e Rails, e uma automação com Azure Service Bus que substituiu a digitação manual de dados no ERP.',
+    fig: 'FIG. V.1 — ODS TEAM',
     photo: odsPhoto,
+    alt: 'Foto do time da ODS',
   },
 ];
 ---
 
 <BaseLayout
   title="Experiências — Augusto Amaral"
-  description="Quatro empregos, sete anos, contados como uma história. De ODS até Spring Health."
+  description="Cinco capítulos, sete anos, contados como uma história. De ODS até Spring Health."
   locale={locale}
   pathname={pathname}
   activeNav="experiences"
@@ -62,7 +78,7 @@ const chapters = [
     <div class="container">
       <p class="page-label mono-label">{t('experiences.label')}</p>
       <h1 class="page-h1">
-        Quatro empregos, sete anos, contados <em>como uma história</em>.
+        Cinco capítulos, sete anos, contados <em>como uma história</em>.
       </h1>
       <p class="page-intro">
         {t('experiences.intro')} <a href="https://resume.augustoamaral.com" class="inline-link" target="_blank" rel="noopener">resume.augustoamaral.com ↗</a>.
@@ -84,16 +100,10 @@ const chapters = [
             <p class="ch-body">{ch.body}</p>
           </div>
           <div class="chapter-right">
-            {ch.photo ? (
-              <figure class="ch-photo">
-                <Image src={ch.photo} alt={`${ch.company} — foto do time`} width={800} class="ch-photo-img" />
-                <figcaption class="ch-photo-label mono-label">{ch.fig}</figcaption>
-              </figure>
-            ) : (
-              <div class="ch-photo-placeholder">
-                <span class="ch-photo-label mono-label">{ch.fig}</span>
-              </div>
-            )}
+            <figure class="ch-photo">
+              <Image src={ch.photo} alt={ch.alt} width={800} class="ch-photo-img" />
+              <figcaption class="ch-photo-label mono-label">{ch.fig}</figcaption>
+            </figure>
           </div>
         </div>
       </div>
@@ -196,18 +206,6 @@ const chapters = [
     display: flex;
     flex-direction: column;
     gap: 12px;
-  }
-
-  .ch-photo-placeholder {
-    height: 340px;
-    background: repeating-linear-gradient(
-      135deg,
-      var(--bg-elevated) 0 8px,
-      var(--bg-base) 8px 16px
-    );
-    display: flex;
-    align-items: flex-end;
-    padding: 16px;
   }
 
   .ch-photo {
